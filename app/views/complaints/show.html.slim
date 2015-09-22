@@ -1,0 +1,51 @@
+p#notice = notice
+
+p
+  strong Complainant:
+  = @complaint.complainant
+p
+  strong Respondent:
+  = @complaint.respondent
+p
+  strong Contact number:
+  = @complaint.contact_number
+p
+  strong Address:
+  = @complaint.address
+p
+  strong Area:
+  = @complaint.area
+p
+  strong Complaint number:
+  = @complaint.complaint_number
+p
+  strong Target date:
+  = @complaint.target_date
+p
+  strong Brief:
+  = @complaint.brief
+p
+  strong Nature:
+  = @complaint.nature
+p
+  strong User:
+  = @complaint.user
+p
+  strong File:
+  = @complaint.file
+p
+  strong Registration date:
+  = @complaint.registration_date
+p
+  strong Status:
+  = @complaint.status
+p
+  strong Prayers:
+  = @complaint.prayers
+p
+  strong Overdue:
+  = @complaint.overdue
+
+= link_to 'Edit', edit_complaint_path(@complaint)
+'|
+= link_to 'Back', complaints_path

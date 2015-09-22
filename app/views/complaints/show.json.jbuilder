@@ -1,0 +1,1 @@
+json.extract! @complaint, :id, :complainant, :respondent, :contact_number, :address, :area, :complaint_number, :target_date, :brief, :nature, :user_id, :file, :registration_date, :status, :prayers, :overdue, :created_at, :updated_at

@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
+#  role                   :integer
 #
 # Indexes
 #
@@ -29,4 +30,29 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  extend Enumerize
+  enumerize :role, in: {:user => 0, :dcw => 1,:police => 2, :caw => 3, :dlsa => 4, :icc => 5, :admin => 6}, default: :user
+
+  rails_admin do
+  	list do
+  		field :name
+  		field :email
+  		field :role
+  	end
+  	show do
+  		field :name
+  		field :email
+  		field :role
+  		field :last_sign_in_at
+  	end
+  	edit do
+  		field :name
+  		field :email
+  		field :role
+  		field :password
+  		field :password_confirmation
+  	end
+  end
+
 end

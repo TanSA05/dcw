@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922134829) do
+ActiveRecord::Schema.define(version: 20150922142116) do
+
+  create_table "complaints", force: :cascade do |t|
+    t.string   "complainant"
+    t.string   "respondent"
+    t.string   "contact_number"
+    t.string   "address"
+    t.string   "area"
+    t.string   "complaint_number"
+    t.date     "target_date"
+    t.text     "brief"
+    t.string   "nature"
+    t.integer  "user_id"
+    t.string   "file"
+    t.date     "registration_date"
+    t.string   "status"
+    t.text     "prayers"
+    t.boolean  "overdue"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "complaints", ["user_id"], name: "index_complaints_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150922134829) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
