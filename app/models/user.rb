@@ -17,10 +17,12 @@
 #  updated_at             :datetime         not null
 #  name                   :string
 #  role                   :integer
+#  organization_id        :integer
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
@@ -31,25 +33,31 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :organization
+
   extend Enumerize
-  enumerize :role, in: {:user => 0, :dcw => 1,:police => 2, :caw => 3, :dlsa => 4, :icc => 5, :admin => 6}, default: :user
+  enumerize :role, in: {:user => 0, :admin => 1}, default: :user
+
+  validates :name, presence: true
+  validates :role, presence: true
+  validates :organization, presence: true
 
   rails_admin do
   	list do
   		field :name
   		field :email
-  		field :role
+  		field :organization
   	end
   	show do
   		field :name
   		field :email
-  		field :role
+  		field :organization
   		field :last_sign_in_at
   	end
   	edit do
   		field :name
   		field :email
-  		field :role
+  		field :organization
   		field :password
   		field :password_confirmation
   	end
