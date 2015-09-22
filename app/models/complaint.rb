@@ -30,6 +30,7 @@ class Complaint < ActiveRecord::Base
 	has_paper_trail
 
   belongs_to :user
+	has_and_belongs_to_many :categories
 
   extend Enumerize
   enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]
@@ -56,6 +57,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
+			field :categories
 
   	end
   	show do
@@ -74,6 +76,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
+			field :categories
   	end
   	edit do
   		field :complainant
@@ -91,6 +94,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
+			field :categories
   	end
   end
 end

@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922142116) do
+ActiveRecord::Schema.define(version: 20150922172121) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_complaints", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "complaint_id"
+  end
+
+  add_index "categories_complaints", ["category_id"], name: "index_categories_complaints_on_category_id"
+  add_index "categories_complaints", ["complaint_id"], name: "index_categories_complaints_on_complaint_id"
 
   create_table "complaints", force: :cascade do |t|
     t.string   "complainant"
