@@ -47,7 +47,6 @@ class Complaint < ActiveRecord::Base
       field :registration_date
       field :status
       field :overdue
-
   	end
   	show do
   		field :complaint_number
