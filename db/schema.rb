@@ -11,94 +11,98 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922181444) do
+ActiveRecord::Schema.define(version: 20150924222818) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "categories_complaints", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "complaint_id"
+    t.integer "category_id",  limit: 4
+    t.integer "complaint_id", limit: 4
   end
 
-  add_index "categories_complaints", ["category_id"], name: "index_categories_complaints_on_category_id"
-  add_index "categories_complaints", ["complaint_id"], name: "index_categories_complaints_on_complaint_id"
+  add_index "categories_complaints", ["category_id"], name: "index_categories_complaints_on_category_id", using: :btree
+  add_index "categories_complaints", ["complaint_id"], name: "index_categories_complaints_on_complaint_id", using: :btree
 
   create_table "complaints", force: :cascade do |t|
-    t.string   "complainant"
-    t.string   "respondent"
-    t.string   "contact_number"
-    t.string   "address"
-    t.string   "area"
-    t.string   "complaint_number"
+    t.string   "complainant",       limit: 255
+    t.string   "respondent",        limit: 255
+    t.string   "contact_number",    limit: 255
+    t.string   "address",           limit: 255
+    t.string   "area",              limit: 255
+    t.string   "complaint_number",  limit: 255
     t.date     "target_date"
-    t.text     "brief"
-    t.string   "nature"
-    t.integer  "user_id"
-    t.string   "file"
+    t.text     "brief",             limit: 65535
+    t.string   "nature",            limit: 255
+    t.integer  "user_id",           limit: 4
+    t.string   "file",              limit: 255
     t.date     "registration_date"
-    t.string   "status"
-    t.text     "prayers"
+    t.string   "status",            limit: 255
+    t.text     "prayers",           limit: 65535
     t.boolean  "overdue"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
-  add_index "complaints", ["user_id"], name: "index_complaints_on_user_id"
+  add_index "complaints", ["user_id"], name: "index_complaints_on_user_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.integer  "category",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "name"
-    t.integer  "role"
-    t.integer  "organization_id"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "name",                   limit: 255
+    t.integer  "role",                   limit: 4
+    t.integer  "organization_id",        limit: 4
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["organization_id"], name: "index_users_on_organization_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "version_associations", force: :cascade do |t|
-    t.integer "version_id"
-    t.string  "foreign_key_name", null: false
-    t.integer "foreign_key_id"
+    t.integer "version_id",       limit: 4
+    t.string  "foreign_key_name", limit: 255, null: false
+    t.integer "foreign_key_id",   limit: 4
   end
 
-  add_index "version_associations", ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key"
-  add_index "version_associations", ["version_id"], name: "index_version_associations_on_version_id"
+  add_index "version_associations", ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key", using: :btree
+  add_index "version_associations", ["version_id"], name: "index_version_associations_on_version_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",                         null: false
-    t.integer  "item_id",                           null: false
-    t.string   "event",                             null: false
-    t.string   "whodunnit"
-    t.text     "object",         limit: 1073741823
+    t.string   "item_type",      limit: 255,        null: false
+    t.integer  "item_id",        limit: 4,          null: false
+    t.string   "event",          limit: 255,        null: false
+    t.string   "whodunnit",      limit: 255
+    t.text     "object",         limit: 4294967295
     t.datetime "created_at"
-    t.text     "object_changes", limit: 1073741823
-    t.integer  "transaction_id"
+    t.text     "object_changes", limit: 4294967295
+    t.integer  "transaction_id", limit: 4
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
+  add_foreign_key "categories_complaints", "categories"
+  add_foreign_key "categories_complaints", "complaints"
+  add_foreign_key "complaints", "users"
+  add_foreign_key "users", "organizations"
 end
