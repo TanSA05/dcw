@@ -25,8 +25,6 @@
 class Complaint < ActiveRecord::Base
 	has_paper_trail
 
-  belongs_to :user
-
   extend Enumerize
   enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]
   enumerize :area, in: ["Area 1", "Area 2", "Area 3", "Area 4"]
@@ -38,59 +36,52 @@ class Complaint < ActiveRecord::Base
 
   rails_admin do
   	list do
-  		field :complainant
-  		field :respondent
-  		field :contact_number
-  		field :address
-  		field :area
   		field :complaint_number
-  		field :target_date
-  		field :status
-  		field :overdue
-  		field :brief
-  		field :prayers
-  		field :nature
-  		field :user
-  		field :file
-  		field :registration_date
-			field :category
+      field :complainant
+      field :respondent
+      field :contact_number
+      field :area
+      field :nature
+      field :category
+      field :target_date
+      field :registration_date
+      field :status
+      field :overdue
 
   	end
   	show do
-  		field :complainant
-  		field :respondent
-  		field :contact_number
-  		field :address
-  		field :area
   		field :complaint_number
-  		field :target_date
-  		field :status
-  		field :overdue
-  		field :brief
-  		field :prayers
-  		field :nature
-  		field :user
-  		field :file
-  		field :registration_date
+      field :complainant
+      field :respondent
+      field :contact_number
+      field :address
+      field :area
+      field :nature
+      field :brief
+      field :prayers
+      field :file
+      field :registration_date
+      field :target_date
+      field :status
+      field :overdue
 			field :category
   	end
   	edit do
-  		field :complainant
-  		field :respondent
-  		field :contact_number
-  		field :address
-  		field :area
-  		field :complaint_number
-  		field :target_date
-  		field :status
-  		field :overdue
-  		field :brief
-  		field :prayers
-  		field :nature
-  		field :user
-  		field :file
-  		field :registration_date
-			field :category
+      field :complaint_number
+      field :complainant
+      field :respondent
+      field :contact_number
+      field :address
+      field :area
+      field :nature
+      field :brief
+      field :prayers
+      field :file
+      field :registration_date
+      field :target_date
+      field :status
+      field :overdue
+      field :category
   	end
   end
 end
