@@ -20,6 +20,7 @@
 #  overdue           :boolean
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  category          :string(255)
 #
 # Indexes
 #

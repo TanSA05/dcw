@@ -20,6 +20,7 @@
 #  overdue           :boolean
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  category          :string(255)
 #
 # Indexes
 #
@@ -30,12 +31,12 @@ class Complaint < ActiveRecord::Base
 	has_paper_trail
 
   belongs_to :user
-	has_and_belongs_to_many :categories
 
   extend Enumerize
   enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]
   enumerize :area, in: ["Area 1", "Area 2", "Area 3", "Area 4"]
   enumerize :nature, in: ["Nature1", "Nature2", "Nature3", "Nature4"]
+  enumerize :category, in: ["category 1", "category 2", "category 3"]
 
   mount_uploader :file, FileUploader
 
@@ -57,9 +58,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
-			field :categories do
-        searchable :title
-      end
+			field :category
 
   	end
   	show do
@@ -78,7 +77,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
-			field :categories
+			field :category
   	end
   	edit do
   		field :complainant
@@ -96,7 +95,7 @@ class Complaint < ActiveRecord::Base
   		field :user
   		field :file
   		field :registration_date
-			field :categories
+			field :category
   	end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924222818) do
+ActiveRecord::Schema.define(version: 20150924223419) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150924222818) do
     t.boolean  "overdue"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "category",          limit: 255
   end
 
   add_index "complaints", ["user_id"], name: "index_complaints_on_user_id", using: :btree

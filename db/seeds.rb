@@ -18,8 +18,3 @@ Organization.create!(name: "CAW", :category => :others)
 Organization.create!(name: "DLSA", :category => :others)
 Organization.create!(name: "ICC", :category => :others)
 Organization.create!(name: "CAW Division 2", :category => :others)
-
-Category.create!(title: "category 1")
-Category.create!(title: "category 2")
-Category.create!(title: "category 3")
-Category.create!(title: "category 4")
