@@ -64,6 +64,8 @@ class Complaint < ActiveRecord::Base
       field :status
       field :overdue
 			field :category
+      field :created_at
+      field :updated_at
   	end
   	edit do
       field :complaint_number
