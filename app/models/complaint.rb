@@ -24,6 +24,7 @@
 
 class Complaint < ActiveRecord::Base
 	has_paper_trail
+  include RailsAdminCharts
 
   extend Enumerize
   enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]

@@ -93,6 +93,7 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
+    hash-deep-merge (0.1.1)
     hub (1.12.4)
     i18n (0.7.0)
     interception (0.5)
@@ -109,6 +110,9 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    lazy_high_charts (1.5.4)
+      bundler (>= 1.0)
+      hash-deep-merge
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -180,6 +184,10 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
+    rails_admin_charts (0.0.12)
+      lazy_high_charts (>= 1.4.3)
+      rails (>= 3.2)
+      rails_admin (> 0)
     rails_admin_history_rollback (0.0.6)
       paper_trail (>= 3.0.6)
       rails (~> 4.2.0)
@@ -272,6 +280,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.4)
   rails_admin
+  rails_admin_charts
   rails_admin_history_rollback
   rails_layout
   sass-rails (~> 5.0)

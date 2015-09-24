@@ -45,3 +45,4 @@ end
 group :production do
   gem 'passenger'
 end
+gem 'rails_admin_charts'
