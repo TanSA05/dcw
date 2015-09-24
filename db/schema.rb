@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924223419) do
+ActiveRecord::Schema.define(version: 20150924225537) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20150924223419) do
     t.date     "target_date"
     t.text     "brief",             limit: 65535
     t.string   "nature",            limit: 255
-    t.integer  "user_id",           limit: 4
     t.string   "file",              limit: 255
     t.date     "registration_date"
     t.string   "status",            limit: 255
@@ -47,8 +46,6 @@ ActiveRecord::Schema.define(version: 20150924223419) do
     t.datetime "updated_at",                      null: false
     t.string   "category",          limit: 255
   end
-
-  add_index "complaints", ["user_id"], name: "index_complaints_on_user_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -104,6 +101,5 @@ ActiveRecord::Schema.define(version: 20150924223419) do
 
   add_foreign_key "categories_complaints", "categories"
   add_foreign_key "categories_complaints", "complaints"
-  add_foreign_key "complaints", "users"
   add_foreign_key "users", "organizations"
 end

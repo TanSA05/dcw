@@ -12,7 +12,6 @@
 #  target_date       :date
 #  brief             :text(65535)
 #  nature            :string(255)
-#  user_id           :integer
 #  file              :string(255)
 #  registration_date :date
 #  status            :string(255)
@@ -21,10 +20,6 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  category          :string(255)
-#
-# Indexes
-#
-#  index_complaints_on_user_id  (user_id)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
