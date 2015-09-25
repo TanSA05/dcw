@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'validates_formatting_of'
 
+gem 'rails_admin_clone' # https://github.com/dalpo/rails_admin_clone
 gem 'rails_admin'
 gem 'enumerize'
 gem "cancancan"

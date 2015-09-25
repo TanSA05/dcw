@@ -31,6 +31,8 @@ RailsAdmin.config do |config|
     all
     charts
 
+    clone
+
     ## With an audit adapter, you can add:
     history_index
     history_show

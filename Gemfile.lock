@@ -188,6 +188,9 @@ GEM
       lazy_high_charts (>= 1.4.3)
       rails (>= 3.2)
       rails_admin (> 0)
+    rails_admin_clone (0.0.6)
+      rails (>= 3.2)
+      rails_admin (>= 0.4)
     rails_admin_history_rollback (0.0.6)
       paper_trail (>= 3.0.6)
       rails (~> 4.2.0)
@@ -281,6 +284,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_admin
   rails_admin_charts
+  rails_admin_clone
   rails_admin_history_rollback
   rails_layout
   sass-rails (~> 5.0)
