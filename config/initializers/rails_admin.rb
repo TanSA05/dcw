@@ -33,8 +33,13 @@ RailsAdmin.config do |config|
 
     clone
 
+    import
+
     ## With an audit adapter, you can add:
     history_index
     history_show
+  end 
+  config.configure_with(:import) do |config|
+    config.logging = true
   end
 end
