@@ -34,6 +34,8 @@ class Ability
         can :dashboard              # grant access to the dashboard
         can :manage, [User, Complaint, Organization]
         cannot :clone, [User]
+        can :history, :all
+        cannot :import, [User]
     end
 
   end
