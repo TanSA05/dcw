@@ -25,10 +25,44 @@
 
 class Forward < ActiveRecord::Base
 	has_paper_trail
+  include RailsAdminCharts
 
   extend Enumerize
+  mount_uploader :reply_attachment, FileUploader
 
   belongs_to :complaint
   belongs_to :organization
   belongs_to :user
+
+  rails_admin do
+  	list do
+  		field :complaint
+  		field :organization
+  		field :date_forwarding
+  	end
+  	show do
+  		field :complaint
+  		field :organization
+  		field :user
+  		field :reply_attachment
+  		field :interim_remarks
+  		field :final_remarks
+  		field :feedback_dcw
+  		field :feedback_agency
+  		field :call_center_feedback
+  		field :date_forwarding
+  	end
+  	edit do
+  		field :complaint
+  		field :organization
+  		field :user
+  		field :reply_attachment
+  		field :interim_remarks
+  		field :final_remarks
+  		field :feedback_dcw
+  		field :feedback_agency
+  		field :call_center_feedback
+  		field :date_forwarding
+  	end
+  end
 end

@@ -13,6 +13,7 @@
 #  remarks              :text(65535)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  date                 :date
 #
 # Indexes
 #
@@ -20,5 +21,39 @@
 #
 
 class Hearing < ActiveRecord::Base
+	has_paper_trail
+  include RailsAdminCharts
+
+  extend Enumerize
+
   belongs_to :complaint
+
+  rails_admin do
+  	list do
+  		field :complaint
+  		field :date
+  	end
+  	show do
+  		field :complaint
+  		field :date
+  		field :complainant_summoned
+  		field :complainant_present
+  		field :respondent_summoned
+  		field :respondent_present
+  		field :other_summoned
+  		field :other_present
+  		field :remarks
+  	end
+  	edit do
+  		field :complaint
+  		field :date
+  		field :complainant_summoned
+  		field :complainant_present
+  		field :respondent_summoned
+  		field :respondent_present
+  		field :other_summoned
+  		field :other_present
+  		field :remarks
+  	end
+  end
 end

@@ -22,5 +22,40 @@
 #
 
 class Police < ActiveRecord::Base
+	has_paper_trail
+  include RailsAdminCharts
+
+  extend Enumerize
+  mount_uploader :file, FileUploader
   belongs_to :complaint
+
+  rails_admin do 
+  	list do
+  		field :complaint
+  	end
+  	show do
+  		field :complaint
+  		field :status_report
+  		field :file
+  		field :date_asking_sr
+  		field :date_target_sr
+  		field :date_sr_filled
+  		field :summons
+  		field :fir_status
+  		field :fir_number
+  		field :investigation_process
+  	end
+  	edit do
+  		field :complaint
+  		field :status_report
+  		field :file
+  		field :date_asking_sr
+  		field :date_target_sr
+  		field :date_sr_filled
+  		field :summons
+  		field :fir_status
+  		field :fir_number
+  		field :investigation_process
+  	end
+  end
 end

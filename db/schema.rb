@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925074756) do
+ActiveRecord::Schema.define(version: 20150925075404) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150925074756) do
     t.text     "remarks",              limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.date     "date"
   end
 
   add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree
