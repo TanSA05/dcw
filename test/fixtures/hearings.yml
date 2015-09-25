@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: hearings
+#
+#  id                   :integer          not null, primary key
+#  complaint_id         :integer
+#  complainant_summoned :boolean
+#  respondent_summoned  :boolean
+#  complainant_present  :boolean
+#  respondent_present   :boolean
+#  other_summoned       :string(255)
+#  other_present        :boolean
+#  remarks              :text(65535)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+# Indexes
+#
+#  index_hearings_on_complaint_id  (complaint_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  complaint_id: 
+  complainant_summoned: false
+  respondent_summoned: false
+  complainant_present: false
+  respondent_present: false
+  other_summoned: MyString
+  other_present: false
+  remarks: MyText
+
+two:
+  complaint_id: 
+  complainant_summoned: false
+  respondent_summoned: false
+  complainant_present: false
+  respondent_present: false
+  other_summoned: MyString
+  other_present: false
+  remarks: MyText

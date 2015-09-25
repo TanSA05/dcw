@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924225537) do
+ActiveRecord::Schema.define(version: 20150925074756) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -47,12 +47,63 @@ ActiveRecord::Schema.define(version: 20150924225537) do
     t.string   "category",          limit: 255
   end
 
+  create_table "forwards", force: :cascade do |t|
+    t.integer  "complaint_id",         limit: 4
+    t.integer  "organization_id",      limit: 4
+    t.integer  "user_id",              limit: 4
+    t.string   "reply_attachment",     limit: 255
+    t.text     "interim_remarks",      limit: 65535
+    t.text     "final_remarks",        limit: 65535
+    t.text     "feedback_agency",      limit: 65535
+    t.text     "feedback_dcw",         limit: 65535
+    t.text     "call_center_feedback", limit: 65535
+    t.date     "date_forwarding"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "forwards", ["complaint_id"], name: "index_forwards_on_complaint_id", using: :btree
+  add_index "forwards", ["organization_id"], name: "index_forwards_on_organization_id", using: :btree
+  add_index "forwards", ["user_id"], name: "index_forwards_on_user_id", using: :btree
+
+  create_table "hearings", force: :cascade do |t|
+    t.integer  "complaint_id",         limit: 4
+    t.boolean  "complainant_summoned"
+    t.boolean  "respondent_summoned"
+    t.boolean  "complainant_present"
+    t.boolean  "respondent_present"
+    t.string   "other_summoned",       limit: 255
+    t.boolean  "other_present"
+    t.text     "remarks",              limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "category",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "police", force: :cascade do |t|
+    t.integer  "complaint_id",          limit: 4
+    t.text     "status_report",         limit: 65535
+    t.string   "file",                  limit: 255
+    t.date     "date_asking_sr"
+    t.date     "date_target_sr"
+    t.date     "date_sr_filled"
+    t.text     "summons",               limit: 65535
+    t.boolean  "fir_status"
+    t.string   "fir_number",            limit: 255
+    t.string   "investigation_process", limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "police", ["complaint_id"], name: "index_police_on_complaint_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -101,5 +152,10 @@ ActiveRecord::Schema.define(version: 20150924225537) do
 
   add_foreign_key "categories_complaints", "categories"
   add_foreign_key "categories_complaints", "complaints"
+  add_foreign_key "forwards", "complaints"
+  add_foreign_key "forwards", "organizations"
+  add_foreign_key "forwards", "users"
+  add_foreign_key "hearings", "complaints"
+  add_foreign_key "police", "complaints"
   add_foreign_key "users", "organizations"
 end
