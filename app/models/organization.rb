@@ -11,6 +11,7 @@
 
 class Organization < ActiveRecord::Base
 	has_paper_trail
+  include RailsAdminCharts
 
 	has_many :users
 
@@ -34,5 +35,21 @@ class Organization < ActiveRecord::Base
   		field :name
   		field :category
   	end
+  end
+  def self.graph_data since=30.days.ago
+    [
+      {
+          name: 'All Organization',
+          pointInterval: point_interval = 1.day * 1000,
+          pointStart: start_point = since.to_i * 1000,
+          data: self.all.delta_records_since(since)
+      },
+      {
+          name: 'DCW',
+          pointInterval: point_interval,
+          pointStart: start_point,
+          data: self.where(category: 2).delta_records_since(since)
+      }
+    ]
   end
 end

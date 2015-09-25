@@ -33,6 +33,9 @@ class Ability
         can :access, :rails_admin   # grant access to rails_admin
         can :dashboard              # grant access to the dashboard
         can :manage, [User, Complaint, Organization, Police, Hearing, Forward]
+        cannot :clone, [User]
+        can :history, :all
+        cannot :import, [User]
     end
 
   end
