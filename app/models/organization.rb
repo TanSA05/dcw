@@ -45,7 +45,7 @@ class Organization < ActiveRecord::Base
           data: self.all.delta_records_since(since)
       },
       {
-          name: 'DCW',
+          name: 'Others',
           pointInterval: point_interval,
           pointStart: start_point,
           data: self.where(category: 2).delta_records_since(since)

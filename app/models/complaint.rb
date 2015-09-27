@@ -34,7 +34,7 @@ class Complaint < ActiveRecord::Base
 
   mount_uploader :file, FileUploader
 
-
+  has_many :hearings
   rails_admin do
   	list do
   		field :complaint_number
@@ -65,6 +65,7 @@ class Complaint < ActiveRecord::Base
       field :status
       field :overdue
 			field :category
+      field :hearings
       field :created_at
       field :updated_at
   	end
