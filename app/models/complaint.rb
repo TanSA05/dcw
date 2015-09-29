@@ -35,6 +35,18 @@ class Complaint < ActiveRecord::Base
   mount_uploader :file, FileUploader
 
   has_many :hearings
+
+  before_create do
+    if(Complaint.last)
+      #complaint_count = Complaint.last.complaint_count + 1
+      count = Complaint.last.complaint_number.last(5).to_i+1
+      str_count = format('%05d',count)
+      self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + str_count
+    else
+      self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + "00001".to_s
+    end
+  end
+
   rails_admin do
   	list do
   		field :complaint_number
