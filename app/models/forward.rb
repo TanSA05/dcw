@@ -34,6 +34,10 @@ class Forward < ActiveRecord::Base
   belongs_to :organization
   belongs_to :user
 
+  before_create do
+    self.date_forwarding = Time.now.to_s
+  end
+
   rails_admin do
   	list do
   		field :complaint
