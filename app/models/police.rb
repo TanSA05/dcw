@@ -15,6 +15,7 @@
 #  investigation_process :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  fir_date              :date
 #
 # Indexes
 #
@@ -32,6 +33,16 @@ class Police < ActiveRecord::Base
   rails_admin do 
   	list do
   		field :complaint
+      field :status_report
+      field :file
+      field :date_asking_sr
+      field :date_target_sr
+      field :date_sr_filled
+      field :summons
+      field :fir_status
+      field :fir_number
+      field :fir_date
+      field :investigation_process
   	end
   	show do
   		field :complaint
@@ -43,6 +54,7 @@ class Police < ActiveRecord::Base
   		field :summons
   		field :fir_status
   		field :fir_number
+      field :fir_date
   		field :investigation_process
   	end
   	edit do
@@ -55,6 +67,7 @@ class Police < ActiveRecord::Base
   		field :summons
   		field :fir_status
   		field :fir_number
+      field :fir_date
   		field :investigation_process
   	end
   end

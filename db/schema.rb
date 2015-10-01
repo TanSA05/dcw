@@ -11,26 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925075404) do
+ActiveRecord::Schema.define(version: 20151001174115) do
 
   create_table "complaints", force: :cascade do |t|
-    t.string   "complainant",       limit: 255
-    t.string   "respondent",        limit: 255
-    t.string   "contact_number",    limit: 255
-    t.string   "address",           limit: 255
-    t.string   "area",              limit: 255
-    t.string   "complaint_number",  limit: 255
+    t.string   "complainant",          limit: 255
+    t.string   "contact_number",       limit: 255
+    t.string   "address",              limit: 255
+    t.string   "area",                 limit: 255
+    t.string   "complaint_number",     limit: 255
     t.date     "target_date"
-    t.text     "brief",             limit: 65535
-    t.string   "nature",            limit: 255
-    t.string   "file",              limit: 255
+    t.text     "brief",                limit: 65535
+    t.string   "nature",               limit: 255
+    t.string   "file",                 limit: 255
     t.date     "registration_date"
-    t.string   "status",            limit: 255
-    t.text     "prayers",           limit: 65535
+    t.string   "status",               limit: 255
+    t.text     "prayers",              limit: 65535
     t.boolean  "overdue"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "category",          limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "category",             limit: 255
+    t.string   "respondent_if_person", limit: 255
+    t.string   "respondent_if_agency", limit: 255
   end
 
   create_table "forwards", force: :cascade do |t|
@@ -53,17 +54,19 @@ ActiveRecord::Schema.define(version: 20150925075404) do
   add_index "forwards", ["user_id"], name: "index_forwards_on_user_id", using: :btree
 
   create_table "hearings", force: :cascade do |t|
-    t.integer  "complaint_id",         limit: 4
+    t.integer  "complaint_id",                  limit: 4
     t.boolean  "complainant_summoned"
-    t.boolean  "respondent_summoned"
     t.boolean  "complainant_present"
-    t.boolean  "respondent_present"
-    t.string   "other_summoned",       limit: 255
+    t.string   "other_summoned",                limit: 255
     t.boolean  "other_present"
-    t.text     "remarks",              limit: 65535
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.text     "remarks",                       limit: 65535
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.date     "date"
+    t.boolean  "respondent_summoned_if_person"
+    t.boolean  "respondent_summoned_if_agency"
+    t.boolean  "respondent_present_if_person"
+    t.boolean  "respondent_present_if_agency"
   end
 
   add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree
@@ -88,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150925075404) do
     t.string   "investigation_process", limit: 255
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.date     "fir_date"
   end
 
   add_index "police", ["complaint_id"], name: "index_police_on_complaint_id", using: :btree
