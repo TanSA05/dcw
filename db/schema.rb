@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001174115) do
+ActiveRecord::Schema.define(version: 20151010222638) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20151001174115) do
 
   create_table "hearings", force: :cascade do |t|
     t.integer  "complaint_id",                  limit: 4
-    t.boolean  "complainant_summoned"
     t.boolean  "complainant_present"
     t.string   "other_summoned",                limit: 255
     t.boolean  "other_present"
@@ -81,6 +80,7 @@ ActiveRecord::Schema.define(version: 20151001174115) do
     t.boolean  "respondent_summoned_if_agency"
     t.boolean  "respondent_present_if_person"
     t.boolean  "respondent_present_if_agency"
+    t.string   "complainant_called",            limit: 255
   end
 
   add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree

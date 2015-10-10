@@ -4,7 +4,6 @@
 #
 #  id                            :integer          not null, primary key
 #  complaint_id                  :integer
-#  complainant_summoned          :boolean
 #  complainant_present           :boolean
 #  other_summoned                :string(255)
 #  other_present                 :boolean
@@ -16,6 +15,7 @@
 #  respondent_summoned_if_agency :boolean
 #  respondent_present_if_person  :boolean
 #  respondent_present_if_agency  :boolean
+#  complainant_called            :string(255)
 #
 # Indexes
 #
@@ -36,7 +36,7 @@ class Hearing < ActiveRecord::Base
   	list do
   		field :complaint
   		field :date
-      field :complainant_summoned
+      field :complainant_called
       field :complainant_present
       field :respondent_summoned_if_person
       field :respondent_summoned_if_agency
@@ -48,7 +48,7 @@ class Hearing < ActiveRecord::Base
   	show do
   		field :complaint
   		field :date
-  		field :complainant_summoned
+  		field :complainant_called
   		field :complainant_present
   		field :respondent_summoned_if_person
       field :respondent_summoned_if_agency
@@ -61,7 +61,7 @@ class Hearing < ActiveRecord::Base
   	edit do
   		field :complaint
   		field :date
-  		field :complainant_summoned
+  		field :complainant_called
   		field :complainant_present
   		field :respondent_summoned_if_person
       field :respondent_summoned_if_agency
