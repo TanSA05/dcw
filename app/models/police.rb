@@ -26,6 +26,9 @@ class Police < ActiveRecord::Base
 	has_paper_trail
   include RailsAdminCharts
 
+  validates_presence_of :complaint_id, :fir_number, :investigation_process
+  #validates_presence_of :file
+
   extend Enumerize
   mount_uploader :file, FileUploader
   belongs_to :complaint

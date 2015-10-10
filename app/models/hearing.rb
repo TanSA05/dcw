@@ -26,6 +26,8 @@ class Hearing < ActiveRecord::Base
 	has_paper_trail
   include RailsAdminCharts
 
+  validates_presence_of :complaint_id
+
   extend Enumerize
 
   belongs_to :complaint

@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
 
   belongs_to :organization
 
+  validates_presence_of :name, :email, :organization_id, :password, :password_confirmation
+
   extend Enumerize
   enumerize :role, in: {:user => 0, :admin => 1}, default: :user
 
