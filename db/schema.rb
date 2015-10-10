@@ -13,20 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151010222638) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "categories_complaints", force: :cascade do |t|
-    t.integer "category_id",  limit: 4
-    t.integer "complaint_id", limit: 4
-  end
-
-  add_index "categories_complaints", ["category_id"], name: "index_categories_complaints_on_category_id", using: :btree
-  add_index "categories_complaints", ["complaint_id"], name: "index_categories_complaints_on_complaint_id", using: :btree
-
   create_table "complaints", force: :cascade do |t|
     t.string   "complainant",          limit: 255
     t.string   "contact_number",       limit: 255
@@ -155,8 +141,6 @@ ActiveRecord::Schema.define(version: 20151010222638) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
-  add_foreign_key "categories_complaints", "categories"
-  add_foreign_key "categories_complaints", "complaints"
   add_foreign_key "forwards", "complaints"
   add_foreign_key "forwards", "organizations"
   add_foreign_key "forwards", "users"

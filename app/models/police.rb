@@ -61,16 +61,52 @@ class Police < ActiveRecord::Base
   		field :investigation_process
   	end
   	edit do
-  		field :complaint
-  		field :status_report
-  		field :file
-  		field :date_asking_sr
-  		field :date_target_sr
-  		field :date_sr_filled
-  		field :summons
-  		field :fir_status
+  		field :complaint do
+        help do
+          nil
+        end
+      end
+  		field :status_report do
+        help do
+          "Enter status report"
+        end
+      end
+  		field :file do
+        help do
+          "Upload file"
+        end
+      end
+  		field :date_asking_sr do
+        help do
+          nil
+        end
+      end
+  		field :date_target_sr do
+        help do
+          nil
+        end
+      end
+  		field :date_sr_filled do
+        help do
+          nil
+        end
+      end
+  		field :summons do
+        help do
+          nil
+        end
+      end
+  		field :fir_status do
+        help do
+          nil
+        end
+      end
   		field :fir_number
-      field :fir_date
+      field :fir_date do
+        help do
+          nil
+        end
+      end
   		field :investigation_process
   	end
   end
