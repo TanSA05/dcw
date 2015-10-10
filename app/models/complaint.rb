@@ -106,6 +106,9 @@ class Complaint < ActiveRecord::Base
 						disabled: true
 					}
 				end
+				help do
+					"Auto Generated, Format is YYMMCCCCC"
+				end
 			end
 			field :complainant
 			field :respondent_if_person
