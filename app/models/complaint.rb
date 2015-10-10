@@ -40,9 +40,19 @@ class Complaint < ActiveRecord::Base
   before_create do
     if(Complaint.last)
       #complaint_count = Complaint.last.complaint_count + 1
-      count = Complaint.last.complaint_number.last(5).to_i+1
-      str_count = format('%05d',count)
-      self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + str_count
+      complaint_year = Time.now.year.to_s.last(2).to_i
+      complaint_last_year = Complaint.last.complaint_number.scan(/\d/)[0,2].join.to_i
+      #puts "Last year is #{complaint_last_year}"
+      complaint_month = Time.now.strftime("%m").to_i
+      complaint_last_month = Complaint.last.complaint_number.scan(/\d/)[2,2].join.to_i
+      #puts "Last month is #{complaint_last_month}"
+      if((complaint_year == complaint_last_year) and (complaint_month == complaint_last_month))
+        count = Complaint.last.complaint_number.last(5).to_i+1
+        str_count = format('%05d',count)
+        self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + str_count
+      else
+        self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + "00001".to_s
+      end
     else
       self.complaint_number = Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + "00001".to_s
     end
