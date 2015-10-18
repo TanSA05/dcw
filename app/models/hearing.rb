@@ -15,7 +15,7 @@
 #  respondent_summoned_if_agency :boolean
 #  respondent_present_if_person  :boolean
 #  respondent_present_if_agency  :boolean
-#  complainant_called            :string(255)
+#  complainant_called            :boolean
 #
 # Indexes
 #

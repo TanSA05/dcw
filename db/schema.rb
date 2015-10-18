@@ -11,27 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010222638) do
+ActiveRecord::Schema.define(version: 20151018073307) do
 
   create_table "complaints", force: :cascade do |t|
-    t.string   "complainant",          limit: 255
-    t.string   "contact_number",       limit: 255
-    t.string   "address",              limit: 255
-    t.string   "area",                 limit: 255
-    t.string   "complaint_number",     limit: 255
+    t.string   "complainant",                   limit: 255
+    t.string   "address",                       limit: 255
+    t.string   "complaint_number",              limit: 255
     t.date     "target_date"
-    t.text     "brief",                limit: 65535
-    t.string   "nature",               limit: 255
-    t.string   "file",                 limit: 255
+    t.string   "file",                          limit: 255
     t.date     "registration_date"
-    t.string   "status",               limit: 255
-    t.text     "prayers",              limit: 65535
+    t.string   "status",                        limit: 255
+    t.text     "prayers",                       limit: 65535
     t.boolean  "overdue"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "category",             limit: 255
-    t.string   "respondent_if_person", limit: 255
-    t.string   "respondent_if_agency", limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "category",                      limit: 255
+    t.string   "respondent_if_person",          limit: 255
+    t.string   "respondent_if_agency",          limit: 255
+    t.text     "brief_of_complaint",            limit: 65535
+    t.string   "contact_number_of_complainant", limit: 255
+    t.string   "locality",                      limit: 255
   end
 
   create_table "forwards", force: :cascade do |t|
@@ -66,7 +65,7 @@ ActiveRecord::Schema.define(version: 20151010222638) do
     t.boolean  "respondent_summoned_if_agency"
     t.boolean  "respondent_present_if_person"
     t.boolean  "respondent_present_if_agency"
-    t.string   "complainant_called",            limit: 255
+    t.boolean  "complainant_called"
   end
 
   add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree
