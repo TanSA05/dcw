@@ -1,19 +1,21 @@
-= simple_form_for(@complaint) do |f|
+= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean}) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :complainant
-    = f.input :respondent
-    = f.input :contact_number
+    = f.input :respondent_if_person
+    = f.input :respondent_if_agency
+    = f.input :contact_number_of_complainant
     = f.input :address
-    = f.input :area
+    = f.input :locality
     = f.input :complaint_number
-    = f.input :target_date
-    = f.input :brief
-    = f.input :nature
-    = f.association :user
+    = f.input :brief_of_complaint
     = f.input :file
-    = f.input :registration_date
     = f.input :status
     = f.input :prayers
     = f.input :overdue

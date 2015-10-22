@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: 'dashboard#index', as: :dashboard
   get '/insights', to: 'dashboard#insights', as: :insights
+  get '/your_complaints', to: 'complaints#your_complaints', as: :your_complaints
+  get "/new_complaint", to: "complaints#new_public", as: :new_public_complaint
 
   root to: 'visitors#index'
 end

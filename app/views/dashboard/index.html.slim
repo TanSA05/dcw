@@ -1,2 +1,11 @@
-h1 Dashboard#index
-p Find me in app/views/dashboard/index.html.slim
+div
+	div
+		.well
+			h3 Welcome to Delhi Commission for Women Complaint Management Portal
+			= link_to "File new complaint", new_complaint_path
+			br
+			= link_to "Your Complaints", your_complaints_path
+			br
+			= link_to "Search and view complaints", complaints_path
+			br
+			= link_to "Insights", insights_path

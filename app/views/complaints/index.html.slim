@@ -26,15 +26,15 @@ table
     - @complaints.each do |complaint|
       tr
         td = complaint.complainant
-        td = complaint.respondent
-        td = complaint.contact_number
+        td = complaint.respondent_if_person
+        td = complaint.contact_number_of_complainant
         td = complaint.address
-        td = complaint.area
+        td = complaint.locality
         td = complaint.complaint_number
         td = complaint.target_date
-        td = complaint.brief
-        td = complaint.nature
-        td = complaint.user
+        td = complaint.brief_of_complaint
+        / td = complaint.nature
+        / td = complaint.user
         td = complaint.file
         td = complaint.registration_date
         td = complaint.status

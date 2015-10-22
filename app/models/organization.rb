@@ -21,6 +21,14 @@ class Organization < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :category, presence: true
 
+  def to_s
+    self.name
+  end
+
+  def title
+    self.name
+  end
+
   rails_admin do
   	list do
   		field :name

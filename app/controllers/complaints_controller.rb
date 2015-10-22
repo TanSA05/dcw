@@ -7,6 +7,11 @@ class ComplaintsController < ApplicationController
     @complaints = Complaint.all
   end
 
+  def your_complaints
+    @complaints = Complaint.all
+    #TODO
+  end
+
   # GET /complaints/1
   # GET /complaints/1.json
   def show
@@ -15,6 +20,15 @@ class ComplaintsController < ApplicationController
   # GET /complaints/new
   def new
     @complaint = Complaint.new
+  end
+
+  def new_public
+    @complaint = Complaint.new
+  end
+
+  def create_public
+    #TODO
+
   end
 
   # GET /complaints/1/edit
