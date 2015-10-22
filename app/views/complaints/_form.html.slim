@@ -6,59 +6,33 @@
     boolean: :horizontal_boolean}) do |f|
   = f.error_notification
 
-  .new_complaint
-    br
-    .form-group
-      label.control-label.col-xs-2 for="complainant"  Complainant
-      .col-md-8
-        input#complainant.form-control placeholder="Name of Complainant" type="text" /
-    .form-group
-      label.control-label.col-xs-2 for="resIfPerson"  Respondent_if_person
-      .col-md-8
-        input#resIfPerson.form-control placeholder="Respondent if person" type="text" /
-    .form-group
-      label.control-label.col-xs-2 for="resIfAgency"  Respondent_if_agency
-      .col-md-8
-        input#resIfAgency.form-control placeholder="Respondent if agency" type="text" /
-    .form-group
-      label.control-label.col-xs-2 for="contactNo"  respondent_if_person
-      .col-md-8
-        input#contactNo.form-control placeholder="Contact Number of Complainant" type="text" /
-    .form-group
-      label.control-label.col-xs-2 for="address"  Address
-      .col-md-8
-        input#address.form-control placeholder="Address of Complainant" type="text" /
-    .form-group
-      label.control-label.col-xs-2 for="locality"  Locality
-      .col-md-8
-        select#locality.form-control placeholder="Locality of complainant" type="" /
-    br
+
+  .new-complaint.col-md-10.col-md-offset-2
     .form-inputs
-      File
-      = f.input :file
-    .form-group
-      .col-xs-offset-2.col-xs-10
-        .checkbox
-          label
-            input type="checkbox" /
-            | Remember me
-    .form-group
-      .col-xs-offset-2.col-xs-10
-        button.btn.btn-primary type="submit"  Login
+      /!.col-xs-2
+        = f.label :complainant!/
+      .col-md-8.col-md-offset-2
+        = f.input :complainant, placeholder: "Enter Complainant's name"
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_if_person, placeholder: "Enter if respondent is person"
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_if_agency, hint: "Choose respondent agency"
+      .col-md-8.col-md-offset-2
+        = f.input :contact_number_of_complainant, placeholder: "Enter Complainant's contact number"
+      .col-md-8.col-md-offset-2
+        = f.input :address, placeholder: "Enter Complainant's address"
+      .col-md-8.col-md-offset-2
+        = f.input :locality, hint: "Choose Complainant's locality"
+      /!= f.input :complaint_number
+      /!= f.input :brief_of_complaint
+      .col-md-8.col-md-offset-2
+        = f.input :file, hint: "Upload File"
+      /!= f.input :status
+      /!= f.input :prayers
+      /!= f.input :overdue
 
-  /.form-inputs
-    = f.input :complainant
-    = f.input :respondent_if_person
-    = f.input :respondent_if_agency
-    = f.input :contact_number_of_complainant
-    = f.input :address
-    = f.input :locality
-    = f.input :complaint_number
-    = f.input :brief_of_complaint
-    = f.input :file
-    = f.input :status
-    = f.input :prayers
-    = f.input :overdue
-
-  .form-actions
-    = f.button :submit
+    .form-actions
+      .col-md-8.col-md-offset-4
+        = f.button :submit, "Save Complaint"
+        .btn.back
+          a> href = '/complaints' Back to Complaints 

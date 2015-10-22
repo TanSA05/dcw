@@ -35,7 +35,7 @@ img {
 // to make views framework-neutral
 main {
   @extend .container-fluid;
-  background-color: #eee;
+  background-color: white;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 80px;
@@ -87,10 +87,27 @@ section {
   margin: 20px;
 }
 
-.form-horizontal .control-label{
-  padding-top: 7px;
+.form-actions{
+  padding: 7px;
 }
 
 .newC{
   text-align: center;
+}
+
+.btn{
+  background-color: #428bca;
+  border-color: #357ebd;
+  color: white;
+}
+
+.btn:hover{
+  background-color: #357ebd;
+  border-color: #357ebd;
+  color: white;
+}
+
+.back > a{
+  color: inherit;
+  text-decoration: none;
 }
