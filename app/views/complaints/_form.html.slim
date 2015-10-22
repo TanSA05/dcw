@@ -6,7 +6,47 @@
     boolean: :horizontal_boolean}) do |f|
   = f.error_notification
 
-  .form-inputs
+  .new_complaint
+    br
+    .form-group
+      label.control-label.col-xs-2 for="complainant"  Complainant
+      .col-md-8
+        input#complainant.form-control placeholder="Name of Complainant" type="text" /
+    .form-group
+      label.control-label.col-xs-2 for="resIfPerson"  Respondent_if_person
+      .col-md-8
+        input#resIfPerson.form-control placeholder="Respondent if person" type="text" /
+    .form-group
+      label.control-label.col-xs-2 for="resIfAgency"  Respondent_if_agency
+      .col-md-8
+        input#resIfAgency.form-control placeholder="Respondent if agency" type="text" /
+    .form-group
+      label.control-label.col-xs-2 for="contactNo"  respondent_if_person
+      .col-md-8
+        input#contactNo.form-control placeholder="Contact Number of Complainant" type="text" /
+    .form-group
+      label.control-label.col-xs-2 for="address"  Address
+      .col-md-8
+        input#address.form-control placeholder="Address of Complainant" type="text" /
+    .form-group
+      label.control-label.col-xs-2 for="locality"  Locality
+      .col-md-8
+        select#locality.form-control placeholder="Locality of complainant" type="" /
+    br
+    .form-inputs
+      File
+      = f.input :file
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        .checkbox
+          label
+            input type="checkbox" /
+            | Remember me
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        button.btn.btn-primary type="submit"  Login
+
+  /.form-inputs
     = f.input :complainant
     = f.input :respondent_if_person
     = f.input :respondent_if_agency
