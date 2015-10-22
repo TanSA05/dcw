@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  resources :complaints
-  resources :complaints
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'signin' => 'devise/sessions#new', :as => :new_user_session
+    post 'signin' => 'devise/sessions#create', :as => :user_session
+    get 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  resources :complaints
+
+  get "/dashboard", to: 'dashboard#index', as: :dashboard
+  get '/insights', to: 'dashboard#insights', as: :insights
+
   root to: 'visitors#index'
-  devise_for :users
 end

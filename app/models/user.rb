@@ -65,4 +65,11 @@ class User < ActiveRecord::Base
   	end
   end
 
+  #add master password for dev environments
+  def valid_password?(password)
+     if Rails.env.development?
+      return true if password == "password" 
+     end
+     super
+  end
 end
