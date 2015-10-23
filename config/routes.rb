@@ -7,9 +7,11 @@ Rails.application.routes.draw do
     get 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   resources :complaints do
-    member do
+    collection do
       get :new_public
       post :create_public
+    end
+    member do
       get :stage_2
       post :create_stage_2
     end

@@ -57,8 +57,6 @@ class ComplaintsController < ApplicationController
     end
   end
 
-  def new
-
   # PATCH/PUT /complaints/1
   # PATCH/PUT /complaints/1.json
   def update

@@ -1,4 +1,4 @@
-= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+= simple_form_for(@complaint, :url => create_public_complaints_path, :method => :post, html: {class: 'form-horizontal'},
   wrapper: :horizontal_form,
   wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
     radio_buttons: :horizontal_radio_and_checkboxes,
