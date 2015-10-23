@@ -24,9 +24,12 @@
 class Complaint < ActiveRecord::Base
 	has_paper_trail
 	include RailsAdminCharts
+	include AASM
 
-  validates_presence_of :complainant, :contact_number_of_complainant, :address, :brief, :prayers
-  # validates_presence_of :file
+	aasm_column :status
+
+	validates_presence_of :complainant, :contact_number_of_complainant, :address, :brief, :prayers
+	# validates_presence_of :file
 
 	extend Enumerize
 	enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]
@@ -61,14 +64,14 @@ class Complaint < ActiveRecord::Base
 		end
 	end
 
-  #Convention Rails - For forward to get custom complaint number
-  def to_s
-    self.complaint_number.to_s + " - " + self.complainant.to_s
-  end
+	#Convention Rails - For forward to get custom complaint number
+	def to_s
+		self.complaint_number.to_s + " - " + self.complainant.to_s
+	end
 
-  def title
-    to_s
-  end
+	def title
+		to_s
+	end
 
 	rails_admin do
 		list do
@@ -111,92 +114,111 @@ class Complaint < ActiveRecord::Base
 				default_value do
 					bindings[:object].generate_complaint_number
 				end
-        # To make field uneditable
+				# To make field uneditable
 				html_attributes do
 					{
 						disabled: true
 					}
 				end
-        #Add help text
+				#Add help text
 				help do
 					"Auto Generated, Format is YYMMCCCCC"
 				end
 			end
 			field :complainant do
-        help do
-          "Enter complainant's name"
-        end
-      end
+				help do
+					"Enter complainant's name"
+				end
+			end
 			field :respondent_if_person do
-        help do
-          "Enter if respondent is a person"
-        end
-      end
+				help do
+					"Enter if respondent is a person"
+				end
+			end
 			field :respondent_if_agency do
-        help do
-          "Enter if respondent is an agency"
-        end
-      end
+				help do
+					"Enter if respondent is an agency"
+				end
+			end
 			field :contact_number_of_complainant do
-        help do
-          "Enter Complainant's contact number"
-        end
-      end
+				help do
+					"Enter Complainant's contact number"
+				end
+			end
 			field :address do
-        help do
-          "Enter Complainant's address"
-        end
-      end
+				help do
+					"Enter Complainant's address"
+				end
+			end
 			field :locality do
-        help do
-          "Choose Complainant's residential area"
-        end
-      end
-			# field :nature do
-   #      help do
-   #        "Enter the nature of complaint"
-   #      end
-   #    end
+				help do
+					"Choose Complainant's residential area"
+				end
+			end
 			field :brief_of_complaint do
-        help do
-          nil
-        end
-      end
+				help do
+					nil
+				end
+			end
 			field :prayers do
-        help do
-          nil
-        end
-      end
+				help do
+					nil
+				end
+			end
 			field :file do
-        help do
-          "Upload PDF"
-        end
-      end
+				help do
+					"Upload PDF"
+				end
+			end
 			field :registration_date do
-        help do
-          nil
-        end
-      end
+				help do
+					nil
+				end
+			end
 			field :target_date do
-        help do
-          nil
-        end
-      end
-			# field :status do
-   #      help do
-   #        "Enter current status of complaint"
-   #      end
-   #    end
-			# field :overdue do
-   #      help do
-   #        "Tick if overdue"
-   #      end
-   #    end
+				help do
+					nil
+				end
+			end
 			field :category do
-        help do
-          "Enter the category of complaint"
-        end
-      end
+				help do
+					"Enter the category of complaint"
+				end
+			end
+		end
+	end
+
+	aasm :no_direct_assignment => true, :whiny_transitions => false do
+		state :filed, initial: true
+		state :recieved
+		state :forwarded_interim
+		state :forwarded_final
+		state :hearing
+		state :closed
+		state :disposed
+
+		event :recieve do
+			transitions from: :filed, to: :recieved
+		end
+
+		event :forward do
+			transitions from: :recieved, to: :forwarded_interim
+		end
+
+		event :forward_keep do
+			transitions from: :forwarded_interim, to: :forwarded_final
+		end
+
+		event :internal_hearing do
+			transitions from: :recieved, to: :hearing
+		end
+
+		event :close do
+			transitions from: [:recieved, :forwarded_final, :forwarded_interim, :hearing], to: :closed
+		end
+
+		event :dispose do
+			transitions from: [:recieved, :forwarded_final, :forwarded_interim, :hearing], to: :disposed
 		end
 	end
 end

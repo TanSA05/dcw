@@ -48,3 +48,4 @@ group :production do
 end
 gem 'rails_admin_charts'
 gem "rails_admin_import" # https://github.com/stephskardal/rails_admin_import
+gem 'aasm'
