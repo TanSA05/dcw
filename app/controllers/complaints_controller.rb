@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :stage_2, :create_stage_2]
 
   # GET /complaints
   # GET /complaints.json
