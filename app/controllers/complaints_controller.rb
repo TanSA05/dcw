@@ -31,6 +31,12 @@ class ComplaintsController < ApplicationController
 
   end
 
+  def stage_2
+  end
+
+  def create_stage_2
+  end
+
   # GET /complaints/1/edit
   def edit
   end
@@ -50,6 +56,8 @@ class ComplaintsController < ApplicationController
       end
     end
   end
+
+  def new
 
   # PATCH/PUT /complaints/1
   # PATCH/PUT /complaints/1.json
