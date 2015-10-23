@@ -1,0 +1,27 @@
+= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean}) do |f|
+  = f.error_notification
+
+
+  .new-complaint.col-md-10.col-md-offset-2
+    .form-inputs
+      /!.col-xs-2
+        = f.label :complainant!/
+      .col-md-8.col-md-offset-2
+        = f.input :brief, placeholder: "Enter Complaint brief"
+      .col-md-8.col-md-offset-2
+        = f.input :prayers, placeholder: "Enter Prayers"
+      /!.col-md-8.col-md-offset-2
+      /!  = f.input :agency, hint: "Choose agency"
+      .col-md-8.col-md-offset-2
+        = f.input :category, placeholder: "Enter Complainant category"
+
+    .form-actions
+      .col-md-8.col-md-offset-4
+        = f.button :submit, "Save Complaint"
+        .btn.back
+          a> href = '/complaints' Back to Complaints

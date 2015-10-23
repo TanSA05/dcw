@@ -4,17 +4,20 @@ p
   strong Complainant:
   = @complaint.complainant
 p
-  strong Respondent:
-  = @complaint.respondent
+  strong Respondent if Person:
+  = @complaint.respondent_if_person
+p
+  strong Respondent if agency:
+  = @complaint.respondent_if_agency
 p
   strong Contact number:
-  = @complaint.contact_number
+  = @complaint.contact_number_of_complainant
 p
   strong Address:
   = @complaint.address
 p
-  strong Area:
-  = @complaint.area
+  strong Locality:
+  = @complaint.locality
 p
   strong Complaint number:
   = @complaint.complaint_number
@@ -23,13 +26,13 @@ p
   = @complaint.target_date
 p
   strong Brief:
-  = @complaint.brief
-p
-  strong Nature:
-  = @complaint.nature
-p
-  strong User:
-  = @complaint.user
+  = @complaint.brief_of_complaint
+/!p
+/!  strong Nature:
+/!  = @complaint.nature
+/!p
+/!  strong User:
+/!  = @complaint.user
 p
   strong File:
   = @complaint.file
