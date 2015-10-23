@@ -12,8 +12,6 @@
       /!.col-xs-2
         = f.label :complainant!/
       .col-md-8.col-md-offset-2
-        = f.input :generate_complaint_number, disabled: true, label: "Complaint Number", hint: "Auto Generated, Format is YYMMCCCCC"
-      .col-md-8.col-md-offset-2
         = f.input :complainant, placeholder: "Enter Complainant's name"
       .col-md-8.col-md-offset-2
         = f.input :respondent_if_person, placeholder: "Enter if respondent is person"
