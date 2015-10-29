@@ -45,6 +45,14 @@ class Complaint < ActiveRecord::Base
 		self.complaint_number = generate_complaint_number
 	end
 
+	def self.search(search)
+	  if search
+	    where(:conditions => ['complainant LIKE ?', "%#{search}%"])
+	  else
+	    all
+	  end
+	end
+
 	def generate_complaint_number
 		if(Complaint.last)
 			complaint_year = Time.now.year.to_s.last(2).to_i

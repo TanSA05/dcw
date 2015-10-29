@@ -1,10 +1,11 @@
 class ComplaintsController < ApplicationController
   before_action :set_complaint, only: [:show, :edit, :update, :destroy, :stage_2, :create_stage_2]
+  helper_method :sort_column, :sort_direction
 
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.all
+    @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
   end
 
   def your_complaints
@@ -104,5 +105,13 @@ class ComplaintsController < ApplicationController
 
     def complaint_public_params
       params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :brief_of_complaint, :prayers)
+    end
+
+    def sort_column
+      Complaint.column_names.include?(params[:sort]) ? params[:sort] : "complaint_number"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

@@ -1,12 +1,12 @@
 
-table.table.table-condensed.table-striped
+table.table.table-condensed.table-striped.pretty
   thead
     tr
-      th Complaint number
-      th Complainant
-      th Contact number
-      th Locality
-      th Status
+      th = sortable "complaint_number","Complaint number"
+      th = sortable "complainant","Complainant"
+      th = sortable "contact_number_of_complainant","Contact number"
+      th = sortable "locality","Locality"
+      th = sortable "status","Status"
       th
 
   tbody
@@ -18,3 +18,5 @@ table.table.table-condensed.table-striped
         td = complaint.locality
         td = complaint.status
         td = link_to 'Show', complaint, :class => "btn btn-xs btn-primary"
+
+= paginate @complaints

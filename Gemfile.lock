@@ -290,6 +290,7 @@ DEPENDENCIES
   hub
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mysql2 (~> 0.3.8)
   paper_trail
   passenger

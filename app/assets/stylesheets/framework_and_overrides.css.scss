@@ -82,32 +82,6 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
-
-.new-complaint{
-  margin: 20px;
-}
-
-.form-actions{
-  padding: 7px;
-}
-
-.newC{
+.center{
   text-align: center;
-}
-
-.btn{
-  background-color: #428bca;
-  border-color: #357ebd;
-  color: white;
-}
-
-.btn:hover{
-  background-color: #357ebd;
-  border-color: #357ebd;
-  color: white;
-}
-
-.back > a{
-  color: inherit;
-  text-decoration: none;
 }
