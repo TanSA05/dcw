@@ -47,7 +47,7 @@ class Complaint < ActiveRecord::Base
 
 	def self.search(search)
 	  if search
-	    where(:conditions => ['complainant LIKE ?', "%#{search}%"])
+	    where('complainant LIKE ?', "%#{search}%")
 	  else
 	    all
 	  end

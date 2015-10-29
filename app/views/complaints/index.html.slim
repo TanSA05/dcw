@@ -1,6 +1,12 @@
 h1.center All Complaints
 hr
 
+= form_tag complaints_path, :method => :get, :class => "form-inline" do
+  .form-group
+    = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search"
+  .form-group
+    = submit_tag "Search", :name => nil, class: "btn btn-primary btn-sm"
+
 == render 'list'
 
 br
