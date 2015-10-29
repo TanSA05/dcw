@@ -10,7 +10,6 @@
 #  file                          :string(255)
 #  status                        :string(255)
 #  prayers                       :text(65535)
-#  overdue                       :boolean
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  category                      :string(255)

@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
+  has_many :complaints, through: :organization
 
   validates_presence_of :name, :email, :organization_id, :password, :password_confirmation
 
@@ -68,7 +69,7 @@ class User < ActiveRecord::Base
   #add master password for dev environments
   def valid_password?(password)
      if Rails.env.development?
-      return true if password == "password" 
+      return true if password == "password"
      end
      super
   end

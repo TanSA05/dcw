@@ -10,7 +10,6 @@
 #  file                          :string(255)
 #  status                        :string(255)
 #  prayers                       :text(65535)
-#  overdue                       :boolean
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  category                      :string(255)
@@ -34,6 +33,7 @@ class Complaint < ActiveRecord::Base
 
 	has_many :hearings
 	belongs_to :organization
+	has_many :forwards
 
 	attr_accessor :file_cache
 
@@ -83,6 +83,16 @@ class Complaint < ActiveRecord::Base
 			end
 		else
 			return Time.now.year.to_s.last(2) + Time.now.strftime("%m").to_s + "00001".to_s
+		end
+	end
+
+	def overdue
+		if Time.now > self.final_target_date
+			"Passed Final Target Date"
+		elsif Time.now > self.next_target_date
+			"Passed Current Target Date"
+		else
+			"Not yet"
 		end
 	end
 

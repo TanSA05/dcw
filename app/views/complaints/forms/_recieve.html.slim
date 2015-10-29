@@ -1,4 +1,4 @@
-= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+= simple_form_for(@complaint, :url => recieve_complaint_path(@complaint), :method => :post, html: {class: 'form-horizontal'},
   wrapper: :horizontal_form,
   wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
     radio_buttons: :horizontal_radio_and_checkboxes,
@@ -25,6 +25,8 @@
         = f.input :address, placeholder: "Enter Complainant's address", disabled: true
       .col-md-8.col-md-offset-2
         = f.input :locality, disabled: true
+      .col-md-8.col-md-offset-2
+        = f.input :created_at, as: :datetime_picker, disabled: true, label: "Registered At"
       - if @complaint.file.present?
         .col-md-8.col-md-offset-2.center
           = link_to "Open File", @complaint.file_url, class: "btn btn-primary btn-sm"
@@ -43,6 +45,8 @@
       .col-md-8.col-md-offset-2
         = f.association :organization, as: :select, label: "Agency Concerned", required: true
 
+      .col-md-8.col-md-offset-2
+        = f.input :next_target_date, as: :date_picker, label: "Interim Target Date", input_html: {value: (Time.now+30.days).strftime("%d/%m/%Y")}
     .form-actions
       .col-md-8.col-md-offset-4
         = f.button :submit, "Recieve Complaint"

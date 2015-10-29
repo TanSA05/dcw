@@ -5,14 +5,12 @@
 #  id                   :integer          not null, primary key
 #  complaint_id         :integer
 #  organization_id      :integer
-#  user_id              :integer
 #  reply_attachment     :string(255)
 #  interim_remarks      :text(65535)
 #  final_remarks        :text(65535)
 #  feedback_agency      :text(65535)
 #  feedback_dcw         :text(65535)
 #  call_center_feedback :text(65535)
-#  date_forwarding      :date
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
@@ -20,14 +18,13 @@
 #
 #  index_forwards_on_complaint_id     (complaint_id)
 #  index_forwards_on_organization_id  (organization_id)
-#  index_forwards_on_user_id          (user_id)
 #
 
 class Forward < ActiveRecord::Base
 	has_paper_trail
   include RailsAdminCharts
 
-  validates_presence_of :complaint_id, :organization_id, :user_id
+  validates_presence_of :complaint_id, :organization_id
   #validates_presence_of :reply_attachment
 
   extend Enumerize
@@ -35,29 +32,23 @@ class Forward < ActiveRecord::Base
 
   belongs_to :complaint
   belongs_to :organization
-  belongs_to :user
-
-  before_create do
-    self.date_forwarding = Time.now.to_s
-  end
 
   rails_admin do
   	list do
   		field :complaint
   		field :organization
-  		field :date_forwarding
+  		field :created_at
   	end
   	show do
   		field :complaint
   		field :organization
-  		field :user
   		field :reply_attachment
   		field :interim_remarks
   		field :final_remarks
   		field :feedback_dcw
   		field :feedback_agency
-  		field :call_center_feedback
-  		field :date_forwarding
+      field :call_center_feedback
+      field :created_at
   	end
   	edit do
   		field :complaint do
@@ -68,11 +59,6 @@ class Forward < ActiveRecord::Base
   		field :organization do
         help do
           nil
-        end
-      end
-  		field :user do
-        help do
-          "Enter User forwarding complaint"
         end
       end
   		field :reply_attachment do
@@ -103,11 +89,6 @@ class Forward < ActiveRecord::Base
   		field :call_center_feedback do
         help do
           nil
-        end
-      end
-  		field :date_forwarding do
-        help do
-          "Date of forwarding complaint"
         end
       end
   	end

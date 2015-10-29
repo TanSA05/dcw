@@ -2,23 +2,17 @@ class ComplaintsController < ApplicationController
   before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved]
   helper_method :sort_column, :sort_direction
 
-  # GET /complaints
-  # GET /complaints.json
   def index
     @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
   end
 
   def your_complaints
-    @complaints = Complaint.all
-    #TODO
+    @complaints = current_user.complaints.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
   end
 
-  # GET /complaints/1
-  # GET /complaints/1.json
   def show
   end
 
-  # GET /complaints/new
   def new
     @complaint = Complaint.new
   end
@@ -27,84 +21,86 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new
   end
 
-  def create_public
-    #TODO
-    @complaint = Complaint.new(complaint_public_params)
-
-    respond_to do |format|
-      if @complaint.save!
-        format.html { redirect_to root_url, notice: 'Complaint was successfully created.' }
-        # format.json { render :show, status: :created, location: @complaint }
-      else
-        format.html { render :new_public }
-        # format.json { render json: @complaint.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def recieve
   end
 
-  def recieved
-  end
-
-  # GET /complaints/1/edit
-  def edit
-  end
-
-  # POST /complaints
-  # POST /complaints.json
   def create
     @complaint = Complaint.new(complaint_params)
 
     respond_to do |format|
       if @complaint.save
+        #push to timeline
         format.html { redirect_to @complaint, notice: 'Complaint was successfully created.' }
-        format.json { render :show, status: :created, location: @complaint }
       else
         format.html { render :new }
-        format.json { render json: @complaint.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /complaints/1
-  # PATCH/PUT /complaints/1.json
-  def update
+  def create_public
+    @complaint = Complaint.new(complaint_public_params)
     respond_to do |format|
-      if @complaint.update(complaint_params)
-        format.html { redirect_to @complaint, notice: 'Complaint was successfully updated.' }
-        format.json { render :show, status: :ok, location: @complaint }
+      if @complaint.save
+        #push to timeline
+        format.html { redirect_to root_url, notice: 'Complaint was successfully created.' }
       else
-        format.html { render :edit }
-        format.json { render json: @complaint.errors, status: :unprocessable_entity }
+        format.html { render :new_public }
       end
     end
   end
 
-  # DELETE /complaints/1
-  # DELETE /complaints/1.json
+  def recieved
+    if @complaint.recieve!
+      respond_to do |format|
+        if @complaint.update(complaint_recieve_params)
+        #push to timeline
+          if @complaint.organization == Organization.first
+            @complaint.internal_hearing!
+            @complaint.final_target_date = Time.now + 90.days
+            @complaint.save!
+            #push to timeline
+          else
+            Forward.create(complaint: @complaint,organization: @complaint.organization)
+            @complaint.forward!
+            @complaint.final_target_date = Time.now + @complaint.organization.days_for_final_response.days
+            @complaint.save!
+            #push to timeline
+          end
+          format.html { redirect_to @complaint, notice: 'Complaint was successfully recieved.' }
+        else
+          format.html { render :recieve }
+        end
+      end
+    else
+      redirect_unknown_error
+    end
+  end
+
   def destroy
     @complaint.destroy
     respond_to do |format|
       format.html { redirect_to complaints_url, notice: 'Complaint was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_complaint
       @complaint = Complaint.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
-      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :file)
+      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency,
+       :contact_number_of_complainant, :address, :locality, :file)
     end
 
     def complaint_public_params
-      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :brief_of_complaint, :prayers)
+      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency,
+       :contact_number_of_complainant, :address, :locality, :brief_of_complaint, :prayers)
+    end
+
+    def complaint_recieve_params
+      params.require(:complaint).permit(:file, :brief_of_complaint, :prayers,
+        :organization_id,:next_target_date)
     end
 
     def sort_column

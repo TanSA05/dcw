@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029084906) do
+ActiveRecord::Schema.define(version: 20151029143051) do
 
   create_table "complaints", force: :cascade do |t|
     t.string   "complainant",                   limit: 255
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20151029084906) do
     t.string   "file",                          limit: 255
     t.string   "status",                        limit: 255
     t.text     "prayers",                       limit: 65535
-    t.boolean  "overdue"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.string   "category",                      limit: 255
@@ -39,21 +38,18 @@ ActiveRecord::Schema.define(version: 20151029084906) do
   create_table "forwards", force: :cascade do |t|
     t.integer  "complaint_id",         limit: 4
     t.integer  "organization_id",      limit: 4
-    t.integer  "user_id",              limit: 4
     t.string   "reply_attachment",     limit: 255
     t.text     "interim_remarks",      limit: 65535
     t.text     "final_remarks",        limit: 65535
     t.text     "feedback_agency",      limit: 65535
     t.text     "feedback_dcw",         limit: 65535
     t.text     "call_center_feedback", limit: 65535
-    t.date     "date_forwarding"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
 
   add_index "forwards", ["complaint_id"], name: "index_forwards_on_complaint_id", using: :btree
   add_index "forwards", ["organization_id"], name: "index_forwards_on_organization_id", using: :btree
-  add_index "forwards", ["user_id"], name: "index_forwards_on_user_id", using: :btree
 
   create_table "hearings", force: :cascade do |t|
     t.integer  "complaint_id",                  limit: 4
@@ -74,10 +70,11 @@ ActiveRecord::Schema.define(version: 20151029084906) do
   add_index "hearings", ["complaint_id"], name: "index_hearings_on_complaint_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "category",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                    limit: 255
+    t.integer  "category",                limit: 4
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "days_for_final_response", limit: 4
   end
 
   create_table "police", force: :cascade do |t|
@@ -146,7 +143,6 @@ ActiveRecord::Schema.define(version: 20151029084906) do
   add_foreign_key "complaints", "organizations"
   add_foreign_key "forwards", "complaints"
   add_foreign_key "forwards", "organizations"
-  add_foreign_key "forwards", "users"
   add_foreign_key "hearings", "complaints"
   add_foreign_key "police", "complaints"
   add_foreign_key "users", "organizations"

@@ -13,13 +13,17 @@ gem 'aasm'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'validates_formatting_of'
-gem 'bootstrap-sass'
 
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
 gem 'bootstrap-wysihtml5-rails'
 gem "select2-rails"
+gem 'momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 
 gem 'rails_admin_clone' # https://github.com/dalpo/rails_admin_clone
 gem 'rails_admin'

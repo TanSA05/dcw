@@ -11,8 +11,10 @@
  * file per style scope.
  *
  *= require framework_and_overrides
+ *= require font-awesome
  *= require select2
  *= require select2-bootstrap
+ *= require bootstrap-datetimepicker.min
  *= require styles
  *= require_self
  */

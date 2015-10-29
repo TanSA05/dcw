@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
     member do
       get :recieve
-      post :recieved
+      post :recieve, to: :recieved
     end
   end
 

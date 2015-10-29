@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Faker::Config.locale = 'en-IND'
 
-Organization.create(name: "DCW", :category => :dcw)
+Organization.create(name: "DCW", :category => :dcw, days_for_final_response: 180)
 
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
@@ -15,20 +15,13 @@ puts 'CREATED ADMIN USER: ' << user.email
 # See http://railsapps.github.io/rails-environment-variables.html
 
 organizations = [
-	{name: "Police Branch 1", :category => :police},
-	{name: "Police Branch 2", :category => :police},
-	{name: "CAW", :category => :others},
-	{name: "DLSA", :category => :others},
-	{name: "ICC", :category => :others},
-	{name: "CAW Division 2", :category => :others}
+	{name: "Police Branch 1", :category => :police, days_for_final_response: 90},
+	{name: "Police Branch 2", :category => :police, days_for_final_response: 90},
+	{name: "CAW", :category => :others, days_for_final_response: 90},
+	{name: "DLSA", :category => :others, days_for_final_response: 60},
+	{name: "ICC", :category => :others, days_for_final_response: 90},
+	{name: "CAW Division 2", :category => :others, days_for_final_response: 90}
 ]
-
-# Organization.create(name: "Police Branch 1", :category => :police)
-# Organization.create(name: "Police Branch 2", :category => :police)
-# Organization.create(name: "CAW", :category => :others)
-# Organization.create(name: "DLSA", :category => :others)
-# Organization.create(name: "ICC", :category => :others)
-# Organization.create(name: "CAW Division 2", :category => :others)
 
 organizations.each do |x|
 	Organization.create(x)
