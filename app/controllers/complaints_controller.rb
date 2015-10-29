@@ -28,7 +28,17 @@ class ComplaintsController < ApplicationController
 
   def create_public
     #TODO
+    @complaint = Complaint.new(complaint_public_params)
 
+    respond_to do |format|
+      if @complaint.save!
+        format.html { redirect_to root_url, notice: 'Complaint was successfully created.' }
+        # format.json { render :show, status: :created, location: @complaint }
+      else
+        format.html { render :new_public }
+        # format.json { render json: @complaint.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def stage_2
@@ -90,5 +100,9 @@ class ComplaintsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
       params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :file)
+    end
+
+    def complaint_public_params
+      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :brief_of_complaint, :prayers)
     end
 end
