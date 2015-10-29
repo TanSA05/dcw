@@ -1,0 +1,20 @@
+
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th Complaint number
+      th Complainant
+      th Contact number
+      th Locality
+      th Status
+      th
+
+  tbody
+    - @complaints.each do |complaint|
+      tr
+        td = complaint.complaint_number
+        td = complaint.complainant
+        td = complaint.contact_number_of_complainant
+        td = complaint.locality
+        td = complaint.status
+        td = link_to 'Show', complaint, :class => "btn btn-xs btn-primary"

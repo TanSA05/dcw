@@ -1,49 +1,7 @@
-h1 Listing complaints
+h1 All Complaints
 
-table
-  thead
-    tr
-      th Complainant
-      th Respondent
-      th Contact number
-      th Address
-      th Area
-      th Complaint number
-      th Target date
-      th Brief
-      th Nature
-      th User
-      th File
-      th Registration date
-      th Status
-      th Prayers
-      th Overdue
-      th
-      th
-      th
-
-  tbody
-    - @complaints.each do |complaint|
-      tr
-        td = complaint.complainant
-        td = complaint.respondent_if_person
-        td = complaint.contact_number_of_complainant
-        td = complaint.address
-        td = complaint.locality
-        td = complaint.complaint_number
-        td = complaint.target_date
-        td = complaint.brief_of_complaint
-        / td = complaint.nature
-        / td = complaint.user
-        td = complaint.file
-        td = complaint.registration_date
-        td = complaint.status
-        td = complaint.prayers
-        td = complaint.overdue
-        td = link_to 'Show', complaint
-        td = link_to 'Edit', edit_complaint_path(complaint)
-        td = link_to 'Destroy', complaint, data: {:confirm => 'Are you sure?'}, :method => :delete
+== render 'list'
 
 br
 
-= link_to 'New Complaint', new_complaint_path
+= link_to 'Back', root_path, class: "btn btn-primary btn-sm"
