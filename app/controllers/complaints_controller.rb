@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :stage_2, :create_stage_2]
 
   # GET /complaints
   # GET /complaints.json
@@ -29,6 +29,12 @@ class ComplaintsController < ApplicationController
   def create_public
     #TODO
 
+  end
+
+  def stage_2
+  end
+
+  def create_stage_2
   end
 
   # GET /complaints/1/edit
@@ -83,6 +89,6 @@ class ComplaintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
-      params.require(:complaint).permit(:complainant, :respondent, :contact_number, :address, :area, :complaint_number, :target_date, :brief, :nature, :user_id, :file, :registration_date, :status, :prayers, :overdue)
+      params.require(:complaint).permit(:complainant, :respondent_if_person, :respondent_if_agency, :contact_number_of_complainant, :address, :locality, :file)
     end
 end

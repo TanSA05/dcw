@@ -28,8 +28,8 @@ class Complaint < ActiveRecord::Base
 
 	aasm_column :status
 
-	validates_presence_of :complainant, :contact_number_of_complainant, :address, :brief, :prayers
-	# validates_presence_of :file
+  validates_presence_of :complainant, :contact_number_of_complainant, :address
+  # validates_presence_of :file
 
 	extend Enumerize
 	enumerize :status, in: ["Status 1", "Status 2", "Status 3", "Status 4"]

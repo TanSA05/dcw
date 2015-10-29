@@ -1,4 +1,4 @@
-= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+= simple_form_for(@complaint, :url => create_public_complaints_path, :method => :post, html: {class: 'form-horizontal'},
   wrapper: :horizontal_form,
   wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
     radio_buttons: :horizontal_radio_and_checkboxes,
@@ -26,7 +26,9 @@
       /!= f.input :complaint_number
       /!= f.input :brief_of_complaint
       .col-md-8.col-md-offset-2
-        = f.input :file, hint: "Upload File"
+        = f.input :brief_of_complaint, hint: "Write details about the complaint"
+      .col-md-8.col-md-offset-2
+        = f.input :prayers, hint: "Write your prayers for the complaint"
       /!= f.input :status
       /!= f.input :prayers
       /!= f.input :overdue
