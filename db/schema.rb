@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018073307) do
+ActiveRecord::Schema.define(version: 20151029084906) do
 
   create_table "complaints", force: :cascade do |t|
     t.string   "complainant",                   limit: 255
     t.string   "address",                       limit: 255
     t.string   "complaint_number",              limit: 255
-    t.date     "target_date"
+    t.date     "final_target_date"
     t.string   "file",                          limit: 255
-    t.date     "registration_date"
     t.string   "status",                        limit: 255
     t.text     "prayers",                       limit: 65535
     t.boolean  "overdue"
@@ -31,7 +30,11 @@ ActiveRecord::Schema.define(version: 20151018073307) do
     t.text     "brief_of_complaint",            limit: 65535
     t.string   "contact_number_of_complainant", limit: 255
     t.string   "locality",                      limit: 255
+    t.date     "next_target_date"
+    t.integer  "organization_id",               limit: 4
   end
+
+  add_index "complaints", ["organization_id"], name: "index_complaints_on_organization_id", using: :btree
 
   create_table "forwards", force: :cascade do |t|
     t.integer  "complaint_id",         limit: 4
@@ -140,6 +143,7 @@ ActiveRecord::Schema.define(version: 20151018073307) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
+  add_foreign_key "complaints", "organizations"
   add_foreign_key "forwards", "complaints"
   add_foreign_key "forwards", "organizations"
   add_foreign_key "forwards", "users"

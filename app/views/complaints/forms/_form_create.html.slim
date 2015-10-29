@@ -9,8 +9,6 @@
 
   .new-complaint.col-md-10.col-md-offset-2
     .form-inputs
-      /!.col-xs-2
-        = f.label :complainant!/
       .col-md-8.col-md-offset-2
         = f.input :generate_complaint_number, disabled: true, label: "Complaint Number", hint: "Auto Generated, Format is YYMMCCCCC"
       .col-md-8.col-md-offset-2
@@ -25,16 +23,11 @@
         = f.input :address, placeholder: "Enter Complainant's address"
       .col-md-8.col-md-offset-2
         = f.input :locality, hint: "Choose Complainant's locality"
-      /!= f.input :complaint_number
-      /!= f.input :brief_of_complaint
       .col-md-8.col-md-offset-2
-        = f.input :file, hint: "Upload File"
-      /!= f.input :status
-      /!= f.input :prayers
-      /!= f.input :overdue
+        = f.input :file, hint: "Upload File", required: true
 
     .form-actions
       .col-md-8.col-md-offset-4
-        = f.button :submit, "Save Complaint"
+        = f.button :submit, "Create Complaint"
         .btn.back
-          a> href = '/complaints' Back to Complaints 
+          a> href = '/complaints' Back to Complaints

@@ -1,0 +1,50 @@
+= simple_form_for(@complaint, html: {class: 'form-horizontal'},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean}) do |f|
+  = f.error_notification
+
+
+  .new-complaint.col-md-10.col-md-offset-2
+    .form-inputs
+      .col-md-8.col-md-offset-2
+        = f.input :generate_complaint_number, disabled: true, label: "Complaint Number", hint: "Auto Generated, Format is YYMMCCCCC"
+      .col-md-8.col-md-offset-2
+        = f.input :complainant, placeholder: "Enter Complainant's name", disabled: true
+      - if @complaint.respondent_if_person.present?
+        .col-md-8.col-md-offset-2
+          = f.input :respondent_if_person, label: "Respondent (Person)", disabled: true
+      - if @complaint.respondent_if_agency.present?
+        .col-md-8.col-md-offset-2
+          = f.input :respondent_if_agency, disabled: true, label: "Respondent (Agency)"
+      .col-md-8.col-md-offset-2
+        = f.input :contact_number_of_complainant, placeholder: "Enter Complainant's contact number", disabled: true
+      .col-md-8.col-md-offset-2
+        = f.input :address, placeholder: "Enter Complainant's address", disabled: true
+      .col-md-8.col-md-offset-2
+        = f.input :locality, disabled: true
+      - if @complaint.file.present?
+        .col-md-8.col-md-offset-2.center
+          = link_to "Open File", @complaint.file_url, class: "btn btn-primary btn-sm"
+          br
+          br
+      .col-md-8.col-md-offset-2
+        = f.input :brief_of_complaint, disabled: @complaint.brief_of_complaint.present?
+      .col-md-8.col-md-offset-2
+        = f.input :prayers, disabled: @complaint.prayers.present?
+      /!= f.input :brief_of_complaint
+      - unless @complaint.file.present?
+        .col-md-8.col-md-offset-2
+          = f.input :file, hint: "Upload File"
+          = f.input :file_cache, as: :hidden
+
+      .col-md-8.col-md-offset-2
+        = f.association :organization, as: :select, label: "Agency Concerned", required: true
+
+    .form-actions
+      .col-md-8.col-md-offset-4
+        = f.button :submit, "Recieve Complaint"
+        .btn.back
+          a> href = '/complaints' Back to Complaints

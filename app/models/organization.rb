@@ -14,6 +14,7 @@ class Organization < ActiveRecord::Base
   include RailsAdminCharts
 
 	has_many :users
+  has_many :complaints
 
   extend Enumerize
   enumerize :category, in: {:dcw => 0, :police => 1, :others => 2}, default: :dcw

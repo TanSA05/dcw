@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       post :create_public
     end
     member do
-      get :stage_2
-      post :create_stage_2
+      get :recieve
+      post :recieved
     end
   end
 

@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :stage_2, :create_stage_2]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved]
   helper_method :sort_column, :sort_direction
 
   # GET /complaints
@@ -42,10 +42,10 @@ class ComplaintsController < ApplicationController
     end
   end
 
-  def stage_2
+  def recieve
   end
 
-  def create_stage_2
+  def recieved
   end
 
   # GET /complaints/1/edit

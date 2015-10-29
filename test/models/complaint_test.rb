@@ -6,9 +6,8 @@
 #  complainant                   :string(255)
 #  address                       :string(255)
 #  complaint_number              :string(255)
-#  target_date                   :date
+#  final_target_date             :date
 #  file                          :string(255)
-#  registration_date             :date
 #  status                        :string(255)
 #  prayers                       :text(65535)
 #  overdue                       :boolean
@@ -20,6 +19,12 @@
 #  brief_of_complaint            :text(65535)
 #  contact_number_of_complainant :string(255)
 #  locality                      :string(255)
+#  next_target_date              :date
+#  organization_id               :integer
+#
+# Indexes
+#
+#  index_complaints_on_organization_id  (organization_id)
 #
 
 require 'test_helper'

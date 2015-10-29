@@ -22,8 +22,8 @@ p
   strong Complaint number:
   = @complaint.complaint_number
 p
-  strong Target date:
-  = @complaint.target_date
+  strong Next Target date:
+  = @complaint.next_target_date
 p
   strong Brief:
   = @complaint.brief_of_complaint
@@ -38,7 +38,7 @@ p
   = @complaint.file
 p
   strong Registration date:
-  = @complaint.registration_date
+  = @complaint.created_at.to_formatted_s(:long)
 p
   strong Status:
   = @complaint.status
