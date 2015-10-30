@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get :hearings
       get :add_hearing
       post :add_hearing, to: :added_hearing
+      get :close
+      get :dispose
     end
   end
 

@@ -13,29 +13,18 @@ br
 			- if @complaint.hearing?
 				= link_to "View Hearings", hearings_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
 				= link_to "Add Hearing", add_hearing_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-
-
-		/ link_to recieve
-
-		/ if in hearings and dcw
-		/ close
-		/ dispose
-		/ link_to add hearing
-		/ link_to view hearings
-
-		/ if forwarded and dcw or complaint org
-			/ dispose
-			/ close
-
-			/ if dcw
-			/ add feedback_dcw
-			/ add callcenterfeedback
-
-			/ if complaint.org = curent_org
-			/ add feedback_agency
-
-				/ if interim
-				/ add interim remarks
-
-				/ else
-				/ add final remarks and close/dispose
+				= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			- if @complaint.forwarded_interim? or @complaint.forwarded_final?
+				/ = link_to "Add DCW Feedback", dcw_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				/ = link_to "Add Call Center", cc_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+		- elsif @complaint.organization == current_organization
+			/ = link_to "Add Agency Feedback", agency_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			- if @complaint.forwarded_interim?
+				/ = link_to "Add Interim Remarks", interim_remarks_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			- if @complaint.forwarded_final?
+				/ = link_to "Add Final Remarks", final_remarks_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
