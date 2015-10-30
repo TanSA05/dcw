@@ -1,6 +1,7 @@
 class ComplaintsController < ApplicationController
   before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved]
   helper_method :sort_column, :sort_direction
+  before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
 
   def index
     @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
@@ -26,6 +27,9 @@ class ComplaintsController < ApplicationController
   end
 
   def recieve
+    unless @complaint.may_recieve?
+      redirect_to root_path, error: "Already recieved"
+    end
   end
 
   def create
@@ -81,12 +85,12 @@ class ComplaintsController < ApplicationController
     end
   end
 
-  def destroy
-    @complaint.destroy
-    respond_to do |format|
-      format.html { redirect_to complaints_url, notice: 'Complaint was successfully destroyed.' }
-    end
-  end
+  # def destroy
+  #   @complaint.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to complaints_url, notice: 'Complaint was successfully destroyed.' }
+  #   end
+  # end
 
   private
     def set_complaint
