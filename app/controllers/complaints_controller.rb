@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings]
   helper_method :sort_column, :sort_direction
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
 
