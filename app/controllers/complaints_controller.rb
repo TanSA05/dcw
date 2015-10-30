@@ -59,7 +59,7 @@ class ComplaintsController < ApplicationController
       respond_to do |format|
         if @complaint.update(complaint_recieve_params)
         #push to timeline
-          if @complaint.organization == Organization.first
+          if @complaint.organization.category == :dcw
             @complaint.internal_hearing!
             @complaint.final_target_date = Time.now + 90.days
             @complaint.save!

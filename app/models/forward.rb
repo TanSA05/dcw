@@ -30,7 +30,7 @@ class Forward < ActiveRecord::Base
   extend Enumerize
   mount_uploader :reply_attachment, FileUploader
 
-  belongs_to :complaint
+  belongs_to :complaint, touch: true
   belongs_to :organization
 
   rails_admin do

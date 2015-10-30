@@ -1,54 +1,76 @@
-p#notice = notice
+h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+.links
+  ul.nav.nav-tabs[role="tablist"]
+    li.active[role="presentation"]
+      = link_to "Details", @complaint
+    li[role="presentation"]
+      = link_to "Actions", actions_complaint_path(@complaint)
+    li[role="presentation"]
+      = link_to "Timeline", timeline_complaint_path(@complaint)
+.complaint
+  br
+  - if @complaint.file.present?
+    .center
+      = link_to "View File", @complaint.file_url, class: "btn btn-primary btn-sm"
+    br
+  - if @complaint.organization.category == :dcw
+      .hearing_fields.center
+        = link_to "View Hearings", hearings_complaint_path(@complaint), class: "btn btn-primary btn-sm"
+  .row
+    .col-md-4
+      = show_field "respondent"
+    .col-md-4
+      = show_field "status"
+    .col-md-4
+      = show_field "organization", nil,"Agency Concerned"
+    .col-md-4
+      = show_field "category"
+    .col-md-4
+      = show_field "next_target_date"
+    .col-md-4
+      = show_field "overdue"
+    .col-md-4
+      = show_field "contact_number_of_complainant"
+    .col-md-4
+      = show_field "address"
+    .col-md-4
+      = show_field "locality"
+    .col-md-12
+      = show_field "brief_of_complaint"
+    .col-md-12
+      = show_field "prayers"
+    .col-md-4
+      = show_field "created_at", @complaint.created_at.to_formatted_s(:long),"Filed On"
 
-p
-  strong Complainant:
-  = @complaint.complainant
-p
-  strong Respondent if Person:
-  = @complaint.respondent_if_person
-p
-  strong Respondent if agency:
-  = @complaint.respondent_if_agency
-p
-  strong Contact number:
-  = @complaint.contact_number_of_complainant
-p
-  strong Address:
-  = @complaint.address
-p
-  strong Locality:
-  = @complaint.locality
-p
-  strong Complaint number:
-  = @complaint.complaint_number
-p
-  strong Next Target date:
-  = @complaint.next_target_date
-p
-  strong Brief:
-  = @complaint.brief_of_complaint
-/!p
-/!  strong Nature:
-/!  = @complaint.nature
-/!p
-/!  strong User:
-/!  = @complaint.user
-p
-  strong File:
-  = @complaint.file
-p
-  strong Registration date:
-  = @complaint.created_at.to_formatted_s(:long)
-p
-  strong Status:
-  = @complaint.status
-p
-  strong Prayers:
-  = @complaint.prayers
-p
-  strong Overdue:
-  / = @complaint.overdue
+    .agency_fields
+      - if @complaint.forwards.present?
+        - forward = @complaint.forwards.last
+        .col-md-4
+          = show_field "Forwarded On", forward.created_at.to_formatted_s(:long)
+        - if forward.reply_attachment.present?
+          .center.col-md-4
+            = link_to "View Reply Report", forward.reply_attachment_url, class: "btn btn-primary btn-sm"
+        - if forward.interim_remarks.present?
+          .col-md-12
+            = show_field "Interim Remarks", forward.interim_remarks
+        - if forward.final_remarks.present?
+          .col-md-12
+            = show_field "Final Remarks", forward.final_remarks
+        - if forward.feedback_dcw.present?
+          .col-md-12
+            = show_field "DCW Feedback", forward.feedback_dcw
+        - if forward.feedback_agency.present?
+          .col-md-12
+            = show_field "Agency Feedback", forward.feedback_agency
+        - if forward.call_center_feedback.present?
+          .col-md-12
+            = show_field "call_center_feedback", forward.call_center_feedback
 
-= link_to 'Edit', edit_complaint_path(@complaint)
-'|
-= link_to 'Back', complaints_path
+    .col-md-4
+      = show_field "final_target_date"
+    .col-md-4
+      = show_field "updated_at", @complaint.updated_at.to_formatted_s(:long),"Last Updated On"
+br
+.foot-links.center
+  = link_to "Back", :back, class: "btn btn-primary btn-sm"
+

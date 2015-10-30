@@ -96,12 +96,22 @@ class Complaint < ActiveRecord::Base
 	end
 
 	def overdue
-		if Time.now > self.final_target_date
-			"Passed Final Target Date"
-		elsif Time.now > self.next_target_date
-			"Passed Current Target Date"
+		if self.final_target_date.present?
+			if Time.now > self.final_target_date
+				"Passed Final Target Date"
+			elsif Time.now > self.next_target_date
+				"Passed Current Target Date"
+			else
+				"Not yet"
+			end
+		elsif self.next_target_date.present?
+			if Time.now > self.next_target_date
+				"Passed Current Target Date"
+			else
+				"Not yet"
+			end
 		else
-			"Not yet"
+			"Target Date not set"
 		end
 	end
 
@@ -124,8 +134,8 @@ class Complaint < ActiveRecord::Base
 			field :locality
 			#field :nature
 			field :category
-			field :target_date
-			field :registration_date
+			field :next_target_date
+			field :final_target_date
 			field :status
 			field :overdue
 		end
@@ -141,8 +151,8 @@ class Complaint < ActiveRecord::Base
 			field :brief_of_complaint
 			field :prayers
 			field :file
-			field :registration_date
-			field :target_date
+			field :next_target_date
+			field :final_target_date
 			field :status
 			field :overdue
 			field :category
@@ -209,16 +219,6 @@ class Complaint < ActiveRecord::Base
 			field :file do
 				help do
 					"Upload PDF"
-				end
-			end
-			field :registration_date do
-				help do
-					nil
-				end
-			end
-			field :target_date do
-				help do
-					nil
 				end
 			end
 			field :category do

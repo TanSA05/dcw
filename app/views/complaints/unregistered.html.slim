@@ -1,4 +1,4 @@
-h1.center Unregistered Complaints
+h1.newC Unregistered Complaints
 hr
 
 = form_tag your_complaints_path, :method => :get, :class => "form-inline" do
@@ -28,7 +28,7 @@ table.table.table-condensed.table-striped.pretty
         td = complaint.locality
         td = complaint.status.humanize
         td = complaint.respondent
-        td = complaint.created_at.to_s(:long)
+        td = complaint.created_at.to_formatted_s(:long)
         td = link_to 'Recieve', recieve_complaint_path(complaint), :class => "btn btn-xs btn-primary"
 
 = paginate @complaints

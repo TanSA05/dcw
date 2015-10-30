@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     member do
       get :recieve
       post :recieve, to: :recieved
+      get :actions
+      get :timeline
+      get :hearings
     end
   end
 
