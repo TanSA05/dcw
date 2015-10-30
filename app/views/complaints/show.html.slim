@@ -13,9 +13,10 @@ h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
     .center
       = link_to "View File", @complaint.file_url, class: "btn btn-primary btn-sm"
     br
-  - if @complaint.organization.category == :dcw
-      .hearing_fields.center
-        = link_to "View Hearings", hearings_complaint_path(@complaint), class: "btn btn-primary btn-sm"
+  - if @complaint.organization
+    - if @complaint.organization.category == :dcw
+        .hearing_fields.center
+          = link_to "View Hearings", hearings_complaint_path(@complaint), class: "btn btn-primary btn-sm"
   .row
     .col-md-4
       = show_field "respondent"
