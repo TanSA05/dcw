@@ -58,6 +58,7 @@ class Complaint < ActiveRecord::Base
 
 	before_create do
 		self.complaint_number = generate_complaint_number
+		self.next_target_date = Time.now + 2.days
 	end
 
 	def self.search(search)
@@ -66,6 +67,14 @@ class Complaint < ActiveRecord::Base
 	  else
 	    all
 	  end
+	end
+
+	def respondent
+		if self.respondent_if_agency.present?
+			self.respondent_if_agency
+		else
+			self.respondent_if_person
+		end
 	end
 
 	def generate_complaint_number

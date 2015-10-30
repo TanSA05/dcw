@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     collection do
       get :new_public
       post :create_public
+      get :unregistered
     end
     member do
       get :recieve

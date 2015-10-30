@@ -1,0 +1,38 @@
+h1.center Unregistered Complaints
+hr
+
+= form_tag your_complaints_path, :method => :get, :class => "form-inline" do
+  .form-group
+    = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search"
+  .form-group
+    = submit_tag "Search", :name => nil, class: "btn btn-primary btn-sm"
+
+table.table.table-condensed.table-striped.pretty
+  thead
+    tr
+      th = sortable "complaint_number","Complaint number"
+      th = sortable "complainant","Complainant"
+      th = sortable "contact_number_of_complainant","Contact number"
+      th = sortable "locality","Locality"
+      th = sortable "status","Status"
+      th = sortable "respondent_if_person", "Respondent"
+      th = sortable "created_at", "Filed On"
+      th
+
+  tbody
+    - @complaints.each do |complaint|
+      tr
+        td = complaint.complaint_number
+        td = complaint.complainant
+        td = complaint.contact_number_of_complainant
+        td = complaint.locality
+        td = complaint.status.humanize
+        td = complaint.respondent
+        td = complaint.created_at.to_s(:long)
+        td = link_to 'Recieve', recieve_complaint_path(complaint), :class => "btn btn-xs btn-primary"
+
+= paginate @complaints
+
+br
+
+.center = link_to 'Back', root_path, class: "btn btn-primary btn-sm center"

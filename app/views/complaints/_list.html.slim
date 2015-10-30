@@ -6,6 +6,8 @@ table.table.table-condensed.table-striped.pretty
       th = sortable "contact_number_of_complainant","Contact number"
       th = sortable "locality","Locality"
       th = sortable "status","Status"
+      th = sortable "organization", "Agency Concerned"
+      th = sortable "next_target_date", "Next Target Date"
       th
 
   tbody
@@ -15,7 +17,9 @@ table.table.table-condensed.table-striped.pretty
         td = complaint.complainant
         td = complaint.contact_number_of_complainant
         td = complaint.locality
-        td = complaint.status
+        td = complaint.status.humanize
+        td = complaint.organization
+        td = complaint.next_target_date
         td = link_to 'Show', complaint, :class => "btn btn-xs btn-primary"
 
 = paginate @complaints

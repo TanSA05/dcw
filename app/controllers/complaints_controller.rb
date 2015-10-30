@@ -10,6 +10,10 @@ class ComplaintsController < ApplicationController
     @complaints = current_user.complaints.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
   end
 
+  def unregistered
+    @complaints = Complaint.where(organization: nil).search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
+  end
+
   def show
   end
 
@@ -26,7 +30,7 @@ class ComplaintsController < ApplicationController
 
   def create
     @complaint = Complaint.new(complaint_params)
-
+    @complaint.next_target_date = Time.now + 2.days
     respond_to do |format|
       if @complaint.save
         #push to timeline
@@ -39,6 +43,7 @@ class ComplaintsController < ApplicationController
 
   def create_public
     @complaint = Complaint.new(complaint_public_params)
+    @complaint.next_target_date = Time.now + 2.days
     respond_to do |format|
       if @complaint.save
         #push to timeline
