@@ -1,0 +1,41 @@
+h1.newC Available Actions for Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+== render "complaint_nav", current: "actions"
+
+/ recieve, view hearings, add hearing, add interim remarks, add final remarks, add feedback agency, add feedback dcw, add call center feedback, dispose, close
+br
+.center
+	.well.center-block.center[style="max-width:400px"]
+		- if @complaint.closed? or @complaint.disposed?
+			h2.newC No Actions Avaiable
+		- if is_dcw?
+			- if @complaint.may_recieve?
+				= link_to "Recieve Complaint", recieve_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			- if @complaint.hearing?
+				= link_to "View Hearings", hearings_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Hearing", add_hearing_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+
+
+		/ link_to recieve
+
+		/ if in hearings and dcw
+		/ close
+		/ dispose
+		/ link_to add hearing
+		/ link_to view hearings
+
+		/ if forwarded and dcw or complaint org
+			/ dispose
+			/ close
+
+			/ if dcw
+			/ add feedback_dcw
+			/ add callcenterfeedback
+
+			/ if complaint.org = curent_org
+			/ add feedback_agency
+
+				/ if interim
+				/ add interim remarks
+
+				/ else
+				/ add final remarks and close/dispose

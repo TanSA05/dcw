@@ -1,12 +1,5 @@
 h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
-.links
-  ul.nav.nav-tabs[role="tablist"]
-    li.active[role="presentation"]
-      = link_to "Details", @complaint
-    li[role="presentation"]
-      = link_to "Actions", actions_complaint_path(@complaint)
-    li[role="presentation"]
-      = link_to "Timeline", timeline_complaint_path(@complaint)
+== render "complaint_nav", current: "show"
 .complaint
   br
   - if @complaint.file.present?

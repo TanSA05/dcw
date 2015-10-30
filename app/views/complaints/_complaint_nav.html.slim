@@ -1,0 +1,9 @@
+
+.links
+  ul.nav.nav-tabs[role="tablist"]
+    li class=('active' if current == "show")
+      = link_to "Details", @complaint
+    li class=('active' if current == "actions")
+      = link_to "Actions", actions_complaint_path(@complaint)
+    li class=('active' if current == "timeline")
+      = link_to "Timeline", timeline_complaint_path(@complaint)

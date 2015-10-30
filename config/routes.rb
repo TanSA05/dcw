@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get :actions
       get :timeline
       get :hearings
+      get :add_hearing
+      post :add_hearing, to: :added_hearing
     end
   end
 

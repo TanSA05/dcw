@@ -8,7 +8,6 @@ gem 'mysql2', '~> 0.3.8'
 gem 'devise'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'aasm'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -57,3 +56,5 @@ end
 group :production do
   gem 'passenger'
 end
+# kept at end to fix bug
+gem 'aasm'
