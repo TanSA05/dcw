@@ -1,7 +1,10 @@
 class ComplaintsController < ApplicationController
+  include ComplaintsHelper
+
   before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings]
   helper_method :sort_column, :sort_direction
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
+  before_action :authenticate_user!, except: [:new_public]
 
   def index
     @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])

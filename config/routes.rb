@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'forwarding/dcw_feedback'
+
+  get 'forwarding/cc_feedback'
+
+  get 'forwarding/agency_feedback'
+
+  get 'forwarding/interim'
+
+  get 'forwarding/final'
+
+  get 'forwarding/do'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :skip => [:sessions]
   as :user do

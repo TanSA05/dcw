@@ -55,12 +55,14 @@ class User < ActiveRecord::Base
   		field :name
   		field :email
   		field :organization
+      field :role
   		field :last_sign_in_at
   	end
   	edit do
   		field :name
   		field :email
-  		field :organization
+      field :organization
+      field :role
   		field :password
   		field :password_confirmation
   	end
