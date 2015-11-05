@@ -1,5 +1,5 @@
 h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
-== render "complaint_nav", current: "show"
+== render "complaints/partials/complaint_nav", current: "show"
 .complaint
   br
   - if @complaint.file.present?

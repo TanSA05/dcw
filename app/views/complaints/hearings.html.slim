@@ -1,0 +1,29 @@
+h1.newC All Hearings for Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+== render "complaints/partials/complaint_nav", current: "actions"
+
+.hearings
+	.row
+	  - @hearings.each do |hearing|
+	  	.col-md-12.hearing
+		    .col-md-4
+		      = show_field "date", hearing.date.to_formatted_s(:long),"Date"
+		    .col-md-4
+		      = show_field "created_at",hearing.created_at.to_formatted_s(:long),"Created On"
+		    .col-md-4
+		      = show_field "complainant_called"
+		    .col-md-4
+		      = show_field "complainant_present"
+		    .col-md-4
+		      = show_field "respondent_summoned_if_person"
+		    .col-md-4
+		      = show_field "respondent_present_if_person"
+		    .col-md-4
+		      = show_field "respondent_summoned_if_agency"
+		    .col-md-4
+		      = show_field "respondent_present_if_agency"
+		    .col-md-4
+		      = show_field "other_summoned"
+		    .col-md-4
+		      = show_field "other_present"
+		    .col-md-4
+		      = show_field "remarks"

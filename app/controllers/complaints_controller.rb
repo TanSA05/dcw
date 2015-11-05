@@ -1,7 +1,7 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing]
   helper_method :sort_column, :sort_direction
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
   before_action :authenticate_user!, except: [:new_public]
@@ -35,6 +35,22 @@ class ComplaintsController < ApplicationController
     end
   end
 
+  def hearings
+    if @complaint.hearing?
+      @hearings = @complaint.hearings
+    else
+      redirect_to root_path, error: "Not in hearings"
+    end
+  end
+
+  def add_hearing
+    if @complaint.hearing?
+      @hearing = Hearing.new
+      @hearing.complaint = @complaint
+    else
+      redirect_to root_path, error: "Not in hearings"
+    end
+  end
   def create
     @complaint = Complaint.new(complaint_params)
     @complaint.next_target_date = Time.now + 2.days
