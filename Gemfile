@@ -55,6 +55,7 @@ group :development, :test do
 end
 group :production do
   gem 'passenger'
+  gem 'therubyracer'
 end
 # kept at end to fix bug
 gem 'aasm'
