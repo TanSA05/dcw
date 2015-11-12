@@ -37,6 +37,7 @@ gem 'carrierwave'
 gem 'kaminari'
 
 gem 'figaro', '>= 1.0.0.rc1'
+gem 'faker'
 group :development do
   gem 'spring'
   gem 'better_errors'
@@ -51,7 +52,6 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'thin'
   gem 'byebug'
-  gem 'faker'
 end
 group :production do
   gem 'passenger'
