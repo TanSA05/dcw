@@ -44,7 +44,8 @@
 
       .col-md-8.col-md-offset-2
         = f.association :organization, as: :select, label: "Agency Concerned", required: true
-
+      .col-md-8.col-md-offset-2
+        = f.input :category, label: "Category of complaint", required: true
       .col-md-8.col-md-offset-2
         = f.input :next_target_date, as: :date_picker, label: "Interim Target Date", input_html: {value: (Time.now+30.days).strftime("%d/%m/%Y")}
     .form-actions

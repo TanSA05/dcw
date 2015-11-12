@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  get 'forwarding/dcw_feedback'
-
-  get 'forwarding/cc_feedback'
-
-  get 'forwarding/agency_feedback'
-
-  get 'forwarding/interim'
-
-  get 'forwarding/final'
-
-  get 'forwarding/do'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :skip => [:sessions]
@@ -29,11 +18,12 @@ Rails.application.routes.draw do
       post :recieve, to: :recieved
       get :actions
       get :timeline
+      get 'hearings/:hid', to: :hearing, as: :hearing
       get :hearings
       get :add_hearing
       post :add_hearing, to: :added_hearing
-      get :close
-      get :dispose
+      get 'actions/:action', to: :new_action, as: :new_action
+      post :action
     end
   end
 

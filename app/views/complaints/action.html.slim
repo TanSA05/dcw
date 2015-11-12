@@ -1,0 +1,4 @@
+h1.newC Available Actions for Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+== render "complaints/partials/complaint_nav", current: "actions"
+
+== render 'complaints/forms/action_form', action: @action

@@ -35,7 +35,7 @@ class Complaint < ActiveRecord::Base
 	belongs_to :organization
 	has_many :forwards
 
-	attr_accessor :file_cache
+	attr_accessor :file_cache, :action1, :action2
 
   validates_presence_of :complainant, :contact_number_of_complainant, :address, :locality
   # validates_presence_of :file

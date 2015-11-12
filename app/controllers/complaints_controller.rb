@@ -1,10 +1,12 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing]
-  helper_method :sort_column, :sort_direction
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing, :hearing]
+  before_action :set_new_complaint, only: [:new,:new_public]
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
   before_action :authenticate_user!, except: [:new_public]
+
+  helper_method :sort_column, :sort_direction
 
   def index
     @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
@@ -16,17 +18,6 @@ class ComplaintsController < ApplicationController
 
   def unregistered
     @complaints = Complaint.where(organization: nil).search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
-  end
-
-  def show
-  end
-
-  def new
-    @complaint = Complaint.new
-  end
-
-  def new_public
-    @complaint = Complaint.new
   end
 
   def recieve
@@ -43,6 +34,13 @@ class ComplaintsController < ApplicationController
     end
   end
 
+  def hearing
+    @hearing = Hearing.find_by_id(params[:hid])
+    unless @hearing
+      not_found
+    end
+  end
+
   def add_hearing
     if @complaint.hearing?
       @hearing = Hearing.new
@@ -51,6 +49,11 @@ class ComplaintsController < ApplicationController
       redirect_to root_path, error: "Not in hearings"
     end
   end
+
+  def added_hearing
+    #todo
+  end
+
   def create
     @complaint = Complaint.new(complaint_params)
     @complaint.next_target_date = Time.now + 2.days
@@ -104,16 +107,13 @@ class ComplaintsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @complaint.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to complaints_url, notice: 'Complaint was successfully destroyed.' }
-  #   end
-  # end
-
   private
     def set_complaint
       @complaint = Complaint.find(params[:id])
+    end
+
+    def set_new_complaint
+      @complaint = Complaint.new
     end
 
     def complaint_params
