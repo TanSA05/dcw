@@ -33,6 +33,8 @@ h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
       = show_field "brief_of_complaint"
     .col-md-12
       = show_field "prayers"
+    .col-md-12
+      = show_field "final_remarks"
     .col-md-4
       = show_field "created_at", @complaint.created_at.to_formatted_s(:long),"Filed On"
 

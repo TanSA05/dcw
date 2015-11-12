@@ -15,15 +15,15 @@ Rails.application.routes.draw do
     end
     member do
       get :recieve
-      post :recieve, to: :recieved
+      post :recieve, action: :recieved
       get :actions
       get :timeline
-      get 'hearings/:hid', to: :hearing, as: :hearing
+      get 'hearings/:hid', action: :hearing, as: :hearing
       get :hearings
       get :add_hearing
-      post :add_hearing, to: :added_hearing
-      get 'actions/:action_name', to: :action, as: :new_action
-      post 'actions/:action_name', to: :do_action, as: :do_action
+      post :add_hearing, action: :added_hearing
+      get 'actions/:action_name', action: :action, as: :new_action
+      post 'actions/:action_name', action: :do_action, as: :do_action
     end
   end
 
