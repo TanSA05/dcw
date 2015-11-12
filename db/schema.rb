@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029143051) do
+ActiveRecord::Schema.define(version: 20151112220822) do
 
   create_table "complaints", force: :cascade do |t|
     t.string   "complainant",                   limit: 255
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151029143051) do
     t.string   "locality",                      limit: 255
     t.date     "next_target_date"
     t.integer  "organization_id",               limit: 4
+    t.text     "final_remarks",                 limit: 65535
   end
 
   add_index "complaints", ["organization_id"], name: "index_complaints_on_organization_id", using: :btree

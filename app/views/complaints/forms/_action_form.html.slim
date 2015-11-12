@@ -1,0 +1,18 @@
+= simple_form_for(@complaint, :url => do_action_complaint_path(@complaint,action[:name]), :method => :post, html: {class: 'form-horizontal'},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean}) do |f|
+  = f.error_notification
+
+
+  .new-complaint.col-md-10.col-md-offset-2
+    .form-inputs
+      .col-md-8.col-md-offset-2
+        = f.input :action_data, as: action[:type], label: action[:help_text], required: true
+    .form-actions
+      .col-md-8.col-md-offset-4
+        = f.button :submit, action[:submit_text]
+        .btn.back
+          = link_to "Back to Actions", actions_complaint_path(@complaint)

@@ -1,10 +1,12 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing, :hearing]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing, :hearing, :action]
   before_action :set_new_complaint, only: [:new,:new_public]
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
   before_action :authenticate_user!, except: [:new_public]
+  before_action :set_action, only: [:action, :do_action]
+  before_action :permitted_action?, only: [:action, :do_action]
 
   helper_method :sort_column, :sort_direction
 
@@ -51,6 +53,10 @@ class ComplaintsController < ApplicationController
   end
 
   def added_hearing
+    #todo
+  end
+
+  def do_action
     #todo
   end
 
@@ -114,6 +120,29 @@ class ComplaintsController < ApplicationController
 
     def set_new_complaint
       @complaint = Complaint.new
+    end
+
+    def set_action
+      @action = permitted_actions[params[:action_name].to_sym]
+    end
+
+    def permitted_action?
+      unless @action
+        not_found
+      end
+    end
+
+    def permitted_actions
+      {
+        :close => { name: :close, target_field: "final_remarks", target_model: "Complaint", help_text: "Final Remarks", submit_text: "Close Complaint", type: :text },
+        :dispose => { name: :dispose, target_field: "final_remarks", target_model: "Complaint", help_text: "Final Remarks", submit_text: "Dispose Complaint", type: :text  },
+        :agency_feedback => { name: :agency_feedback, target_field: "feedback_agency", target_model: "Forward", help_text: "Agency Feedback", submit_text: "Add Feedback", type: :text  },
+        :call_center_feedback => {  name: :call_center_feedback, target_field: "call_center_feedback", target_model: "Forward", help_text: "Call Center Feedback", submit_text: "Add Feedback", type: :text  },
+        :dcw_feedback => {  name: :dcw_feedback, target_field: "feedback_dcw", target_model: "Forward", help_text: "DCW Feedback", submit_text: "Add Feedback", type: :text  },
+        :interim_remarks => { name: :interim_remarks, target_field: "interim_remarks", target_model: "Forward", help_text: "Interim Remarks", submit_text: "Add Remarks" , type: :text },
+        :final_remarks => { name: :final_remarks, target_field: "final_remarks", target_model: "Forward", help_text: "Final Remarks", submit_text: "Add Remarks", type: :text  },
+        :add_reply => { name: :add_reply, target_field: "reply_attachment", target_model: "Forward",  help_text: "Reply File", submit_text: "Add Reply", type: :file  }
+      }
     end
 
     def complaint_params

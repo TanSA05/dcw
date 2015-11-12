@@ -13,18 +13,19 @@ br
 			- if @complaint.hearing?
 				= link_to "View Hearings", hearings_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
 				= link_to "Add Hearing", add_hearing_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Close Complaint", new_action_complaint_path(@complaint,:close), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
 			- if @complaint.forwarded_interim? or @complaint.forwarded_final?
-				/ = link_to "Add DCW Feedback", dcw_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				/ = link_to "Add Call Center", cc_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add DCW Feedback", new_action_complaint_path(@complaint, :dcw_feedback), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Call Center Feedback", new_action_complaint_path(@complaint, :call_center_feedback), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
 		- elsif @complaint.organization == current_organization
-			/ = link_to "Add Agency Feedback", agency_feedback_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			= link_to "Add Agency Feedback", new_action_complaint_path(@complaint, :agency_feedback), :class => "btn btn-lg btn-primary btn-block"
 			- if @complaint.forwarded_interim?
-				/ = link_to "Add Interim Remarks", interim_remarks_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Interim Remarks", new_action_complaint_path(@complaint, :interim_remarks), :class => "btn btn-lg btn-primary btn-block"
 			- if @complaint.forwarded_final?
-				/ = link_to "Add Final Remarks", final_remarks_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-			= link_to "Close Complaint", close_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-			= link_to "Dispose Complaint", dispose_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Final Remarks", new_action_complaint_path(@complaint, :final_remarks), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Reply File", new_action_complaint_path(@complaint, :add_reply), :class => "btn btn-lg btn-primary btn-block"
+			= link_to "Close Complaint", new_action_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+			= link_to "Dispose Complaint", new_action_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"

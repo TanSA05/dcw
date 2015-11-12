@@ -20,6 +20,7 @@
 #  locality                      :string(255)
 #  next_target_date              :date
 #  organization_id               :integer
+#  final_remarks                 :text(65535)
 #
 # Indexes
 #
@@ -35,7 +36,7 @@ class Complaint < ActiveRecord::Base
 	belongs_to :organization
 	has_many :forwards
 
-	attr_accessor :file_cache, :action1, :action2
+	attr_accessor :file_cache, :action_data
 
   validates_presence_of :complainant, :contact_number_of_complainant, :address, :locality
   # validates_presence_of :file

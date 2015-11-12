@@ -22,8 +22,8 @@ Rails.application.routes.draw do
       get :hearings
       get :add_hearing
       post :add_hearing, to: :added_hearing
-      get 'actions/:action', to: :new_action, as: :new_action
-      post :action
+      get 'actions/:action_name', to: :action, as: :new_action
+      post 'actions/:action_name', to: :do_action, as: :do_action
     end
   end
 

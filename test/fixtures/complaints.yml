@@ -20,6 +20,7 @@
 #  locality                      :string(255)
 #  next_target_date              :date
 #  organization_id               :integer
+#  final_remarks                 :text(65535)
 #
 # Indexes
 #
