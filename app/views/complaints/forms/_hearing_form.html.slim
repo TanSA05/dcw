@@ -1,0 +1,38 @@
+= simple_form_for(@hearing, :url => add_hearing_complaint_path(@complaint), :method => :post, html: {class: 'form-horizontal'},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean,
+    date: :horizontal_date}) do |f|
+  = f.error_notification
+
+
+  .new-complaint.col-md-10.col-md-offset-2
+    .form-inputs
+      .col-md-8.col-md-offset-2
+        = f.input :date, label: "Date of hearing", required: true, value: Time.now, as: :date
+      .col-md-8.col-md-offset-2
+        = f.input :complainant_called, required: true, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :complainant_present, required: true, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_summoned_if_person, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_present_if_person, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_summoned_if_agency, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :respondent_present_if_agency, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :other_summoned
+      .col-md-8.col-md-offset-2
+        = f.input :other_present, as: :radio_buttons
+      .col-md-8.col-md-offset-2
+        = f.input :remarks
+
+    .form-actions
+      .col-md-8.col-md-offset-4
+        = f.button :submit, "Create Hearing"
+        |  
+        = link_to 'Back', actions_complaint_path(@complaint), class: "btn btn-primary center"

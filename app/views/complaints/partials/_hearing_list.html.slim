@@ -1,0 +1,21 @@
+table.table.table-condensed.table-striped.pretty
+  thead
+    tr
+      th = sortable "date"
+      th = sortable "complainant_present"
+      th = sortable "respondent_present_if_person"
+      th = sortable "respondent_present_if_agency"
+      th = sortable "remarks"
+      th
+
+  tbody
+    - @hearings.each do |hearing|
+      tr
+        td = hearing.date
+        td = hearing.complainant_present
+        td = hearing.respondent_present_if_person
+        td = hearing.respondent_present_if_agency
+        td = hearing.remarks
+        td = link_to 'Show all details', hearing_complaint_path(@complaint,hearing), :class => "btn btn-xs btn-primary"
+
+= paginate @hearings

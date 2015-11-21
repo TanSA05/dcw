@@ -1,0 +1,23 @@
+h1.newC Hearing on #{@hearing.date.to_formatted_s(:short)} for Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+hr
+
+- hearing = @hearing
+
+.hearings
+	.row
+		.col-md-12.hearing
+			= show_field_with_wrapper 'col-md-4', "date", hearing.date.to_formatted_s(:long),"Date"
+			= show_field_with_wrapper 'col-md-4',"created_at",hearing.created_at.to_formatted_s(:long),"Created On"
+			= show_field_with_wrapper 'col-md-4',"complainant_called"
+			= show_field_with_wrapper 'col-md-4',"complainant_present"
+			= show_field_with_wrapper 'col-md-4',"respondent_summoned_if_person"
+			= show_field_with_wrapper 'col-md-4',"respondent_present_if_person"
+			= show_field_with_wrapper 'col-md-4',"respondent_summoned_if_agency"
+			= show_field_with_wrapper 'col-md-4',"respondent_present_if_agency"
+			= show_field_with_wrapper 'col-md-4',"other_summoned"
+			= show_field_with_wrapper 'col-md-4',"other_present"
+			= show_field_with_wrapper 'col-md-4',"remarks"
+
+br
+
+.center = link_to 'Back', hearings_complaint_path(@complaint), class: "btn btn-primary btn-sm center"
