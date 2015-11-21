@@ -8,7 +8,7 @@ Add timeline
 Add seed
 Add reopening, showing all past forwarding details
 
-Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue
+Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue - OR PERHAPS TAB BASED SCOPES?
 Add test user accounts
 Add police actions and fields
 Make the UI for home, dashboard and show view of complaint
@@ -16,4 +16,5 @@ Add search backend
 Disable Sign Up
 
 Help for size and extn for file
-Editable feedback
+Editable feedback - how to :O
+Public search

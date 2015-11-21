@@ -14,16 +14,21 @@ Rails.application.routes.draw do
       get :unregistered
     end
     member do
+      # Timeline
+      get :timeline
+
+      # Actions-complaint
       get :recieve
       post :recieve, action: :recieved
       get :actions
-      get :timeline
-      get 'hearings/:hid', action: :hearing, as: :hearing
-      get :hearings
-      get :add_hearing
-      post :add_hearing, action: :added_hearing
+      #actions-action
       get 'actions/:action_name', action: :action, as: :new_action
       post 'actions/:action_name', action: :do_action, as: :do_action
+      #hearing
+      get 'hearings/:hid', controller: :hearings,action: :show, as: :hearing
+      get :hearings, controller: :hearings,action: :index
+      get :add_hearing, controller: :hearings,action: :new
+      post :add_hearing, controller: :hearings,action: :create
     end
   end
 
