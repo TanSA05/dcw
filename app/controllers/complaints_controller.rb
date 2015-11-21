@@ -1,7 +1,8 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved, :actions, :timeline, :hearings, :add_hearing, :hearing, :action, :do_action]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :recieve, :recieved,
+   :actions, :timeline, :hearings, :add_hearing, :added_hearing, :hearing, :action, :do_action]
   before_action :set_new_complaint, only: [:new,:new_public]
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
   before_action :authenticate_user!, except: [:new_public]
@@ -26,34 +27,6 @@ class ComplaintsController < ApplicationController
     unless @complaint.may_recieve?
       redirect_to root_path, error: "Already recieved"
     end
-  end
-
-  def hearings
-    if @complaint.hearing?
-      @hearings = @complaint.hearings
-    else
-      redirect_to root_path, error: "Not in hearings"
-    end
-  end
-
-  def hearing
-    @hearing = Hearing.find_by_id(params[:hid])
-    unless @hearing
-      not_found
-    end
-  end
-
-  def add_hearing
-    if @complaint.hearing?
-      @hearing = Hearing.new
-      @hearing.complaint = @complaint
-    else
-      redirect_to root_path, error: "Not in hearings"
-    end
-  end
-
-  def added_hearing
-    #todo
   end
 
   def do_action
@@ -250,11 +223,21 @@ class ComplaintsController < ApplicationController
         :organization_id,:next_target_date)
     end
 
+    def hearing_params
+      params.require(:hearing).permit(:complaint_id,:complainant_present,:complainant_called,
+        :other_summoned,:other_present,:respondent_summoned_if_person,:respondent_summoned_if_agency,
+        :respondent_present_if_person,:respondent_present_if_agency,:date,:remarks)
+    end
+
     def sort_column
       Complaint.column_names.include?(params[:sort]) ? params[:sort] : "complaint_number"
     end
 
+    def hearing_sort_column
+      Hearing.column_names.include?(params[:sort]) ? params[:sort] : "date"
+    end
+
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end

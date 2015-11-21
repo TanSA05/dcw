@@ -1,2 +1,0 @@
-class ForwardingController < ApplicationController
-end

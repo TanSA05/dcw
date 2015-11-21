@@ -5,8 +5,15 @@ Add police actions
 Add restrictions
 Add tracking
 Add timeline
-Add UI
 Add seed
+Add reopening, showing all past forwarding details
 
-Add final_remarks to complaint and use them on dispose/close
-Modify the search and view complaints to have filters for all types of complaints
+Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue
+Add test user accounts
+Add police actions and fields
+Make the UI for home, dashboard and show view of complaint
+Add search backend
+Disable Sign Up
+
+Help for size and extn for file
+Editable feedback
