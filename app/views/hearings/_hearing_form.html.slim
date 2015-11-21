@@ -11,7 +11,7 @@
   .new-complaint.col-md-10.col-md-offset-2
     .form-inputs
       .col-md-8.col-md-offset-2
-        = f.input :date, label: "Date of hearing", required: true, value: Time.now, as: :date
+        = f.input :date, label: "Date of hearing", required: true, as: :date_picker, input_html: {value: Time.now.strftime("%d/%m/%Y")}
       .col-md-8.col-md-offset-2
         = f.input :complainant_called, required: true, as: :radio_buttons
       .col-md-8.col-md-offset-2
