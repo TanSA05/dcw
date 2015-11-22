@@ -18,12 +18,12 @@ Rails.application.routes.draw do
       get :timeline
 
       # Actions-complaint
-      get :recieve
-      post :recieve, action: :recieved
-      get :actions
+      get :recieve, controller: :actions, action: :recieve
+      post :recieve, controller: :actions, action: :recieved
+      get :actions, controller: :actions, action: :index
       #actions-action
-      get 'actions/:action_name', action: :action, as: :new_action
-      post 'actions/:action_name', action: :do_action, as: :do_action
+      get 'actions/:action_name', controller: :actions, action: :new,as: :new_action
+      post 'actions/:action_name', controller: :actions, action: :create, as: :do_action
       #hearing
       get 'hearings/:hid', controller: :hearings,action: :show, as: :hearing
       get :hearings, controller: :hearings,action: :index

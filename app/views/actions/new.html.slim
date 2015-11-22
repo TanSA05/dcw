@@ -2,4 +2,4 @@ h1.newC #{@action[:name].to_s.humanize} | Complaint ##{@complaint.complaint_numb
 
 == render "complaints/partials/complaint_nav", current: "actions"
 
-== render 'complaints/forms/action_form', action: @action
+== render 'actions/action_form', action: @action

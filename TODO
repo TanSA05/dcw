@@ -1,6 +1,6 @@
 TODO
 
-Add actions - hearing and forward
+--Add actions - hearing and forward--
 Add police actions
 Add restrictions
 Add tracking
@@ -18,3 +18,5 @@ Disable Sign Up
 Help for size and extn for file
 Editable feedback - how to :O
 Public search
+
+After closed, make associated models viewable

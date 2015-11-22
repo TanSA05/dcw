@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def action_invalid
+    # render :action, error: "Some error occured"
+    raise "ERROR in doing action"
+  end
+
   private
   def after_sign_out_path_for(resource_or_scope)
     root_path
