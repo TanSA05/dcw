@@ -29,6 +29,7 @@
 
 class Complaint < ActiveRecord::Base
 	has_paper_trail
+	searchkick
 	include RailsAdminCharts
 	include AASM
 
@@ -62,13 +63,13 @@ class Complaint < ActiveRecord::Base
 		self.next_target_date = Time.now + 2.days
 	end
 
-	def self.search(search)
-	  if search
-	    where('complainant LIKE ?', "%#{search}%")
-	  else
-	    all
-	  end
-	end
+	# def self.search(search)
+	#   if search
+	#     where('complainant LIKE ?', "%#{search}%")
+	#   else
+	#     all
+	#   end
+	# end
 
 	def respondent
 		if self.respondent_if_agency.present?

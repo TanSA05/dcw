@@ -8,7 +8,12 @@ class ComplaintsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @complaints = Complaint.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
+    if params[:search].present?
+      @complaints = Complaint.search params[:search],
+        page: params[:page], per_page: 20, order: {sort_column.to_sym => sort_direction.to_sym}
+    else
+      @complaints = Complaint.all.order(sort_column + ' ' + sort_direction).page(params[:page])
+    end
   end
 
   def your_complaints

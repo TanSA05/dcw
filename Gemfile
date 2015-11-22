@@ -36,6 +36,8 @@ gem 'paper_trail'
 gem 'carrierwave'
 gem 'kaminari'
 
+gem 'searchkick'
+
 gem 'figaro', '>= 1.0.0.rc1'
 gem 'faker'
 group :development do
