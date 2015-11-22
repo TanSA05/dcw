@@ -29,6 +29,14 @@ Rails.application.routes.draw do
       get :hearings, controller: :hearings,action: :index
       get :add_hearing, controller: :hearings,action: :new
       post :add_hearing, controller: :hearings,action: :create
+
+      #police actions
+      # update_status_report
+      # update summons
+      # add fir number and details - 1 time
+      # update report file
+      # add investigation process
+      # a
     end
   end
 
