@@ -81,3 +81,4 @@ pickle-email-*.html
 /config/application.yml
 /public/uploads
 /public/assets
+solr/
