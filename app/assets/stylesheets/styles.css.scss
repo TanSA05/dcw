@@ -1,4 +1,5 @@
 $theme-color: #607D8B;
+$btn-border: #9E9E9E;
 
 .theme-color{
   color: $theme-color;
@@ -10,6 +11,21 @@ $theme-color: #607D8B;
   background: $theme-color;
   color: white;
 }
+a.btn{
+  color: white !important;
+}
+.nav a{
+  color: $theme-color !important;
+}
+.navbar-brand {
+  font-size: 1.5em;
+  color: $theme-color !important;
+}
+a, a:hover, a:visited, a:focus, a:active{
+  color: #222;
+  text-decoration: none;
+}
+
 .new-complaint{
   margin: 20px;
 }
@@ -23,15 +39,15 @@ $theme-color: #607D8B;
 }
 
 .btn{
-  background-color: #428bca;
-  border-color: #357ebd;
+  background-color: $theme-color;
+  border-color: $btn-border;
   color: white;
 }
 
 .btn:hover{
-  background-color: #357ebd;
-  border-color: #357ebd;
-  color: white;
+  background-color: white;
+  border-color: $btn-border;
+  color: #222;
 }
 
 .back > a{
@@ -46,22 +62,15 @@ $theme-color: #607D8B;
 }
 
 .pretty th .asc {
-	&:after{
-		content: "▲";
-	}
+  &:after{
+    content: "▲";
+  }
 }
 
 .pretty th .desc {
-	&:after{
-		content: "▼";
-	}
-}
-a, a:hover, a:visited, a:focus, a:active{
-  color: #222;
-  text-decoration: none;
-}
-.btn, .btn a{
-  color: white !important;
+  &:after{
+    content: "▼";
+  }
 }
 
 // FROM other project
@@ -77,13 +86,6 @@ abbr{
 }
 .hide{
   display: none;
-}
-.nav a{
-  color: $theme-color !important;
-}
-.navbar-brand {
-  font-size: 1.5em;
-  color: $theme-color !important;
 }
 @media screen and (min-height: 300px){
   #preview{
