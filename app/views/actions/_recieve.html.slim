@@ -39,7 +39,7 @@
       /!= f.input :brief_of_complaint
       - unless @complaint.file.present?
         .col-md-8.col-md-offset-2
-          = f.input :file, hint: "Upload File"
+          = f.input :file, hint: "Upload File. Max 2MB PDF/JPG/PNG"
           = f.input :file_cache, as: :hidden
 
       .col-md-8.col-md-offset-2

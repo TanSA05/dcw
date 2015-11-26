@@ -12,11 +12,26 @@ Modify the search and view complaints to have filters for all types of complaint
 Add test user accounts
 Add police actions and fields
 Make the UI for home, dashboard and show view of complaint
-Add search backend
+--Add search backend--
 Disable Sign Up
 
-Help for size and extn for file
+--Help for size and extn for file--
 Editable feedback - how to :O
 Public search
 
 After closed, make associated models viewable
+
+Timeline - who(user_id){name, phone, designation, organization}, complaint, forward, police, timestamp, action, action details
+Index/Collapsed: name, complaint_number, action, time
+Show/Expanded: action details, full who
+Add generic_account? to organization
+Add phone, designation to user
+
+
+#police actions
+# update_status_report
+# update summons
+# add fir number and details - 1 time
+# update report file
+# add investigation process
+# a
