@@ -3,10 +3,9 @@ TODO
 --Add actions - hearing and forward--
 Add police actions
 Add restrictions
-Add tracking
 Add timeline
 Add seed
-Add reopening, showing all past forwarding details
+Add reopening, showing all past forwarding details, hearings and police details
 
 Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue - OR PERHAPS TAB BASED SCOPES?
 Add test user accounts
@@ -14,6 +13,7 @@ Add police actions and fields
 Make the UI for home, dashboard and show view of complaint
 --Add search backend--
 Disable Sign Up
+Cluster the complaint view into sections - basic, forwarded on ____ to ____, police details of forward on _____ and so on....
 
 --Help for size and extn for file--
 Editable feedback - how to :O
@@ -27,11 +27,17 @@ Show/Expanded: action details, full who
 Add generic_account? to organization
 Add phone, designation to user
 
+MANAGE DATES AND OVERDUE
+Nest respondent to one type for agency?/move to respondent name and respondent type nomenclature?
+Update rails admin based on current model
+Setup sidekiq, elasticsearch on server
+Emails??
 
-#police actions
-# update_status_report
-# update summons
-# add fir number and details - 1 time
-# update report file
-# add investigation process
-# a
+police actions
+fields - status_report, file, summons, investigation_process, fir_status, fir_number, fir_date
+ACTIONS???
+update_status_report - add status report text and file
+update summons
+add fir number and details - 1 time
+update report file
+add investigation process

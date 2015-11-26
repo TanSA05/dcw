@@ -19,7 +19,8 @@ class ActionsController < ApplicationController
     if @complaint.may_recieve?
       respond_to do |format|
         if @complaint.update(complaint_recieve_params)
-        #push to timeline
+          #push to timeline
+          @complaint.recieve!
           if @complaint.organization.category == :dcw
             @complaint.internal_hearing!
             @complaint.final_target_date = Time.now + 90.days
@@ -31,8 +32,8 @@ class ActionsController < ApplicationController
             @complaint.final_target_date = Time.now + @complaint.organization.days_for_final_response.days
             @complaint.save!
             #push to timeline
+            #add police details
           end
-          @complaint.recieve!
           format.html { redirect_to @complaint, notice: 'Complaint was successfully recieved.' }
         else
           format.html { render :recieve }
@@ -162,6 +163,6 @@ class ActionsController < ApplicationController
 
     def complaint_recieve_params
       params.require(:complaint).permit(:file, :brief_of_complaint, :prayers,
-        :organization_id,:next_target_date)
+        :organization_id,:next_target_date, :category)
     end
 end

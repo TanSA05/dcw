@@ -29,3 +29,5 @@ br
 				= link_to "Add Reply File", new_action_complaint_path(@complaint, :add_reply), :class => "btn btn-lg btn-primary btn-block" unless @forward.reply_attachment.present?
 			= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-primary btn-block"
 			= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
+		- else
+			h2.newC No Actions Avaiable

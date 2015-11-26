@@ -1,4 +1,15 @@
+$theme-color: #607D8B;
 
+.theme-color{
+  color: $theme-color;
+}
+.theme-background{
+  background: $theme-color;
+}
+.theme-background-color{
+  background: $theme-color;
+  color: white;
+}
 .new-complaint{
   margin: 20px;
 }
@@ -49,6 +60,145 @@ a, a:hover, a:visited, a:focus, a:active{
   color: #222;
   text-decoration: none;
 }
-.btn{
+.btn, .btn a{
   color: white !important;
+}
+
+// FROM other project
+abbr{
+  display: none;
+}
+.center{
+  text-align: center;
+}
+.center-no-margin{
+  margin: 0 auto;
+  text-align: center;
+}
+.hide{
+  display: none;
+}
+.nav a{
+  color: $theme-color !important;
+}
+.navbar-brand {
+  font-size: 1.5em;
+  color: $theme-color !important;
+}
+@media screen and (min-height: 300px){
+  #preview{
+    max-height: 200px;
+  }
+}
+@media screen and (min-height: 500px){
+  #preview{
+    max-height: 300px;
+  }
+}
+@media screen and (min-height: 700px){
+  #preview{
+    max-height: 400px;
+  }
+}
+@media screen and (min-height: 900px){
+  #preview{
+    max-height: 550px;
+  }
+}
+@media screen and (min-height: 1000px){
+  #preview{
+    max-height: 700px;
+  }
+}
+@media screen and (min-height: 1500px){
+  #preview{
+    max-height: 1300px;
+  }
+}
+.navbar{
+  border-bottom: 1px solid $theme-color;
+  background: #fcfcfc;
+}
+.image-form, .top40m{
+  margin-top: 40px;
+}
+.form-or{
+  font-size: 1.4em;
+}
+.top0m{
+  margin-top: 0px;
+}
+.top10m{
+  margin-top: 10px;
+}
+.heart0,.heart0:hover,.heart0:active,.heart0:visited,.heart0:focus{
+  color: #222;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+.heart1:hover,.heart1:active,.heart1:visited,.heart1:focus,.heart1{
+  color: #607D8B;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.image-by, .found-at{
+  font-size: 1.2em;
+}
+.redheart{
+  color: #607D8B;
+}
+#card_preview{
+  max-height: 250px;
+}
+.icard{
+  font-size: 1.2em !important;
+}
+.card{
+  // height: 300px;
+}
+.add_button{
+  height: 250px;
+  line-height: 250px;
+}
+h1,h2,h3,h4,h5,h6,div,span,p,html,body,head{
+  font-family: 'Roboto', sans-serif;
+}
+.website-link:hover,.website-link:active,.website-link:visited,.website-link:focus,.website-link{
+  color: #222;
+  text-decoration: none;
+}
+.icon-bar{
+  background-color: #607D8B;
+}
+.navbar-toggle{
+  border-color: #607D8B;
+}
+.nolrm{
+  margin-left: 0;
+  margin-right: 0;
+}
+.loginfb{
+  font-size: 24px;
+}
+.dashcard, .dashcard a{
+  margin-top: 40px;
+  font-size: 1.5em;
+  height: 400px;
+  padding-top: 40px;
+  .dashicon{
+    line-height: 250px;
+  }
+  text-align: center;
+  margin: 20px;
+  // background: #eee;
+  color: $theme-color;
+  text-decoration: none;
+}
+.dashcard:hover{
+  text-decoration: none;
+}
+.container-fluid{
+  margin-left: 5%;
+  margin-right: 5%;
 }

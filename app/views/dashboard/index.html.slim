@@ -1,15 +1,43 @@
-div
-	div
-		.dashboard-box
-			h3 Welcome to Delhi Commission for Women Complaint Management Portal
-			br
-			= link_to "Your Complaints", your_complaints_path
-			br
-			- if is_dcw?
-				= link_to "File new complaint", new_complaint_path
-				br
-				= link_to "Unregistered Complaints", unregistered_complaints_path
-				br
-				= link_to "Search and view complaints", complaints_path
-			br
-			= link_to "Insights", insights_path
+
+.row
+	h3.center.top40m Welcome to Delhi Commission for Women Complaint Management Portal
+	- if is_dcw?
+		.col-sm-4
+			.dashcard
+				= link_to complaints_path do
+					.dashicon
+						span.fa.fa-list.fa-4x
+					.dashtext
+						| Complaints
+		.col-sm-4
+			.dashcard
+				= link_to new_complaint_path do
+					.dashicon
+						span.fa.fa-plus.fa-4x
+					.dashtext
+						| Add a new complaint
+
+
+		.col-sm-4
+			.dashcard
+				= link_to insights_path do
+					.dashicon
+						span.fa.fa-line-chart.fa-4x
+					.dashtext
+						| Insights
+
+	- else
+		.col-sm-6
+			.dashcard
+				= link_to complaints_path do
+					.dashicon
+						span.fa.fa-list.fa-4x
+					.dashtext
+						| Complaints
+		.col-sm-6
+			.dashcard
+				= link_to insights_path do
+					.dashicon
+						span.fa.fa-line-chart.fa-4x
+					.dashtext
+						| Insights
