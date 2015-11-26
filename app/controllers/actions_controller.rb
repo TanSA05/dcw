@@ -6,7 +6,7 @@ class ActionsController < ApplicationController
 
   before_action :set_action, only: [:new, :create]
   before_action :permitted_action?, only: [:new, :create]
-  before_action :set_forward, only: [:new,:create, :actions]
+  before_action :set_forward, only: [:new,:create, :index]
   before_action :only_dcw, only: [:recieve, :recieved]
 
   def recieve

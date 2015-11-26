@@ -1,5 +1,5 @@
-$theme-color: #607D8B;
-$btn-border: #9E9E9E;
+$theme-color: #337ab7;
+$btn-border: #23527c;
 
 .theme-color{
   color: $theme-color;
@@ -11,9 +11,6 @@ $btn-border: #9E9E9E;
   background: $theme-color;
   color: white;
 }
-a.btn{
-  color: white !important;
-}
 .nav a{
   color: $theme-color !important;
 }
@@ -21,9 +18,21 @@ a.btn{
   font-size: 1.5em;
   color: $theme-color !important;
 }
-a, a:hover, a:visited, a:focus, a:active{
+// a, a:hover, a:visited, a:focus, a:active{
+//   color: #222;
+//   text-decoration: none;
+// }
+
+.btn,.btn:visited{
+  background-color: $theme-color;
+  border-color: $btn-border;
+  color: white;
+}
+
+.btn:hover,.btn:active,.btn:focus{
+  background-color: white;
+  border-color: $btn-border;
   color: #222;
-  text-decoration: none;
 }
 
 .new-complaint{
@@ -36,18 +45,6 @@ a, a:hover, a:visited, a:focus, a:active{
 
 .newC{
   text-align: center;
-}
-
-.btn{
-  background-color: $theme-color;
-  border-color: $btn-border;
-  color: white;
-}
-
-.btn:hover{
-  background-color: white;
-  border-color: $btn-border;
-  color: #222;
 }
 
 .back > a{

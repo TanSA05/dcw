@@ -29,7 +29,7 @@
         = f.input :created_at, as: :datetime_picker, disabled: true, label: "Registered At"
       - if @complaint.file.present?
         .col-md-8.col-md-offset-2.center
-          = link_to "Open File", @complaint.file_url, class: "btn btn-primary btn-sm"
+          = link_to "Open File", @complaint.file_url, class: "btn btn-custom-theme btn-sm"
           br
           br
       .col-md-8.col-md-offset-2

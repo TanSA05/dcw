@@ -1,7 +1,7 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :timeline]
   before_action :set_new_complaint, only: [:new,:new_public]
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
   before_action :authenticate_user!, except: [:new_public]

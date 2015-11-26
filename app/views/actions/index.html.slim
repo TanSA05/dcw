@@ -9,25 +9,25 @@ br
 			h2.newC No Actions Avaiable
 		- if is_dcw?
 			- if @complaint.may_recieve?
-				= link_to "Recieve Complaint", recieve_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Recieve Complaint", recieve_complaint_path(@complaint), :class => "btn btn-lg btn-custom-theme btn-block"
 			- if @complaint.hearing?
-				= link_to "View Hearings", hearings_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Add Hearing", add_hearing_complaint_path(@complaint), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Close Complaint", new_action_complaint_path(@complaint,:close), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "View Hearings", hearings_complaint_path(@complaint), :class => "btn btn-lg btn-custom-theme btn-block"
+				= link_to "Add Hearing", add_hearing_complaint_path(@complaint), :class => "btn btn-lg btn-custom-theme btn-block"
+				= link_to "Close Complaint", new_action_complaint_path(@complaint,:close), :class => "btn btn-lg btn-custom-theme btn-block"
+				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-custom-theme btn-block"
 			- if @complaint.forwarded_interim? or @complaint.forwarded_final?
-				= link_to "Add DCW Feedback", new_action_complaint_path(@complaint, :dcw_feedback), :class => "btn btn-lg btn-primary btn-block" unless @forward.feedback_dcw.present?
-				= link_to "Add Call Center Feedback", new_action_complaint_path(@complaint, :call_center_feedback), :class => "btn btn-lg btn-primary btn-block" unless @forward.call_center_feedback.present?
-				= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-primary btn-block"
-				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add DCW Feedback", new_action_complaint_path(@complaint, :dcw_feedback), :class => "btn btn-lg btn-custom-theme btn-block" unless @forward.feedback_dcw.present?
+				= link_to "Add Call Center Feedback", new_action_complaint_path(@complaint, :call_center_feedback), :class => "btn btn-lg btn-custom-theme btn-block" unless @forward.call_center_feedback.present?
+				= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-custom-theme btn-block"
+				= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-custom-theme btn-block"
 		- elsif @complaint.organization == current_organization
-			= link_to "Add Agency Feedback", new_action_complaint_path(@complaint, :agency_feedback), :class => "btn btn-lg btn-primary btn-block"unless @forward.feedback_agency.present?
+			= link_to "Add Agency Feedback", new_action_complaint_path(@complaint, :agency_feedback), :class => "btn btn-lg btn-custom-theme btn-block"unless @forward.feedback_agency.present?
 			- if @complaint.forwarded_interim?
-				= link_to "Add Interim Remarks", new_action_complaint_path(@complaint, :interim_remarks), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Interim Remarks", new_action_complaint_path(@complaint, :interim_remarks), :class => "btn btn-lg btn-custom-theme btn-block"
 			- if @complaint.forwarded_final?
-				= link_to "Add Final Remarks", new_action_complaint_path(@complaint, :final_remarks), :class => "btn btn-lg btn-primary btn-block" unless @forward.final_remarks.present?
-				= link_to "Add Reply File", new_action_complaint_path(@complaint, :add_reply), :class => "btn btn-lg btn-primary btn-block" unless @forward.reply_attachment.present?
-			= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-primary btn-block"
-			= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-primary btn-block"
+				= link_to "Add Final Remarks", new_action_complaint_path(@complaint, :final_remarks), :class => "btn btn-lg btn-custom-theme btn-block" unless @forward.final_remarks.present?
+				= link_to "Add Reply File", new_action_complaint_path(@complaint, :add_reply), :class => "btn btn-lg btn-custom-theme btn-block" unless @forward.reply_attachment.present?
+			= link_to "Close Complaint", new_action_complaint_path(@complaint, :close), :class => "btn btn-lg btn-custom-theme btn-block"
+			= link_to "Dispose Complaint", new_action_complaint_path(@complaint, :dispose), :class => "btn btn-lg btn-custom-theme btn-block"
 		- else
 			h2.newC No Actions Avaiable

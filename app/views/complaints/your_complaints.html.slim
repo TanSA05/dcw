@@ -5,10 +5,10 @@ hr
   .form-group
     = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search"
   .form-group
-    = submit_tag "Search", :name => nil, class: "btn btn-primary btn-sm"
+    = submit_tag "Search", :name => nil, class: "btn btn-custom-theme btn-sm"
 
 == render 'complaints/partials/list'
 
 br
 
-.center = link_to 'Back', root_path, class: "btn btn-primary btn-sm center"
+.center = link_to 'Back', root_path, class: "btn btn-custom-theme btn-sm center"

@@ -20,6 +20,6 @@ table.table.table-condensed.table-striped.pretty
         td = complaint.status.humanize
         td = complaint.organization
         td = complaint.next_target_date
-        td = link_to 'Show', complaint, :class => "btn btn-xs btn-primary"
+        td = link_to 'Show', complaint, :class => "btn btn-xs btn-custom-theme"
 
 = paginate @complaints

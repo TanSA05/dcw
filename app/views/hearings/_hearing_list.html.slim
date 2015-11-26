@@ -16,6 +16,6 @@ table.table.table-condensed.table-striped.pretty
         td = yesno hearing.respondent_present_if_person
         td = yesno hearing.respondent_present_if_agency
         td = hearing.remarks
-        td = link_to 'Show all details', hearing_complaint_path(@complaint,hearing), :class => "btn btn-xs btn-primary"
+        td = link_to 'Show all details', hearing_complaint_path(@complaint,hearing), :class => "btn btn-xs btn-custom-theme"
 
 = paginate @hearings

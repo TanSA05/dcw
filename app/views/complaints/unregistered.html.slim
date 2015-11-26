@@ -5,7 +5,7 @@ hr
   .form-group
     = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search"
   .form-group
-    = submit_tag "Search", :name => nil, class: "btn btn-primary btn-sm"
+    = submit_tag "Search", :name => nil, class: "btn btn-custom-theme btn-sm"
 
 table.table.table-condensed.table-striped.pretty
   thead
@@ -29,10 +29,10 @@ table.table.table-condensed.table-striped.pretty
         td = complaint.status.humanize
         td = complaint.respondent
         td = complaint.created_at.to_formatted_s(:long)
-        td = link_to 'Recieve', recieve_complaint_path(complaint), :class => "btn btn-xs btn-primary"
+        td = link_to 'Recieve', recieve_complaint_path(complaint), :class => "btn btn-xs btn-custom-theme"
 
 = paginate @complaints
 
 br
 
-.center = link_to 'Back', root_path, class: "btn btn-primary btn-sm center"
+.center = link_to 'Back', root_path, class: "btn btn-custom-theme btn-sm center"

@@ -4,7 +4,7 @@ h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
   br
   - if @complaint.file.present?
     .center
-      = link_to "View File", @complaint.file_url, class: "btn btn-primary btn-sm"
+      = link_to "View File", @complaint.file_url, class: "btn btn-custom-theme btn-sm"
     br
   .row
     = show_field_with_wrapper 'col-md-4',"respondent"
@@ -26,7 +26,7 @@ h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
         - forward = @complaint.forwards.last
         = show_field_with_wrapper 'col-md-4',"Forwarded On", forward.created_at.to_formatted_s(:long)
         - if forward.reply_attachment.present?
-          = link_to "View Reply Report", forward.reply_attachment_url, class: "btn btn-primary btn-sm"
+          = link_to "View Reply Report", forward.reply_attachment_url, class: "btn btn-custom-theme btn-sm"
         - if forward.interim_remarks.present?
           = show_field_with_wrapper 'col-md-12',"Interim Remarks", forward.interim_remarks
         - if forward.final_remarks.present?
@@ -42,5 +42,5 @@ h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
     = show_field_with_wrapper 'col-md-4',"updated_at", @complaint.updated_at.to_formatted_s(:long),"Last Updated On"
 br
 .foot-links.center
-  = link_to "Back", :back, class: "btn btn-primary btn-sm"
+  = link_to "Back", :back, class: "btn btn-custom-theme btn-sm"
 
