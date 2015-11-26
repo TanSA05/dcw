@@ -1,6 +1,5 @@
 TODO
 
---Add actions - hearing and forward--
 Add police actions
 Add restrictions
 Add timeline
@@ -10,12 +9,10 @@ Add reopening, showing all past forwarding details, hearings and police details
 Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue - OR PERHAPS TAB BASED SCOPES?
 Add test user accounts
 Add police actions and fields
-Make the UI for home, dashboard and show view of complaint
---Add search backend--
 Disable Sign Up
+Make the UI for home, dashboard and show view of complaint
 Cluster the complaint view into sections - basic, forwarded on ____ to ____, police details of forward on _____ and so on....
 
---Help for size and extn for file--
 Editable feedback - how to :O
 Public search
 
