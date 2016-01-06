@@ -1,40 +1,35 @@
 TODO
-
+NT BEGIN
 Add police actions
-Add restrictions
+	police actions
+	fields - status_report, file, summons, investigation_process, fir_status, fir_number, fir_date
+	ACTIONS???
+	update_status_report - add status report text and file
+	update summons
+	add fir number and details - 1 time
+	update report file
+	add investigation process
+	Add restrictions 
+
 Add timeline
-Add seed
+	Index/Collapsed: name, complaint_number, action, time
+	Show/Expanded: action details, full who
 Add reopening, showing all past forwarding details, hearings and police details
+Timeline - who(user_id){name, phone, designation, organization}, complaint, forward, police, timestamp, action, action details
+Editable feedback - how to :O
+NT END
 
 Modify the search and view complaints to have filters for all types of complaints - unregistered, forwarded, hearing, closed, disposed, overdue - OR PERHAPS TAB BASED SCOPES?
-Add test user accounts
-Add police actions and fields
-Disable Sign Up
 Make the UI for home, dashboard and show view of complaint
 Cluster the complaint view into sections - basic, forwarded on ____ to ____, police details of forward on _____ and so on....
 
-Editable feedback - how to :O
-Public search
-
-After closed, make associated models viewable
-
-Timeline - who(user_id){name, phone, designation, organization}, complaint, forward, police, timestamp, action, action details
-Index/Collapsed: name, complaint_number, action, time
-Show/Expanded: action details, full who
 Add generic_account? to organization
 Add phone, designation to user
 
 MANAGE DATES AND OVERDUE
 Nest respondent to one type for agency?/move to respondent name and respondent type nomenclature?
 Update rails admin based on current model
-Setup sidekiq, elasticsearch on server
 Emails??
 
-police actions
-fields - status_report, file, summons, investigation_process, fir_status, fir_number, fir_date
-ACTIONS???
-update_status_report - add status report text and file
-update summons
-add fir number and details - 1 time
-update report file
-add investigation process
+Add test user accounts
+Add seed

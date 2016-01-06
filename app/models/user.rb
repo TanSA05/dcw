@@ -30,13 +30,13 @@ class User < ActiveRecord::Base
 	has_paper_trail
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, # :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organization
   has_many :complaints, through: :organization
 
-  validates_presence_of :name, :email, :organization_id, :password, :password_confirmation
+  validates_presence_of :name, :email, :organization_id
 
   extend Enumerize
   enumerize :role, in: {:user => 0, :admin => 1}, default: :user
@@ -63,8 +63,12 @@ class User < ActiveRecord::Base
   		field :email
       field :organization
       field :role
-  		field :password
-  		field :password_confirmation
+  		field :password do
+        required true
+      end
+  		field :password_confirmation do
+        required true
+      end
   	end
   end
 
