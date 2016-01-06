@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       get :add_hearing, controller: :hearings,action: :new
       post :add_hearing, controller: :hearings,action: :create
 
+      get :status
+
       #police actions
       # update_status_report
       # update summons
@@ -43,6 +45,9 @@ Rails.application.routes.draw do
   get "/dashboard", to: 'dashboard#index', as: :dashboard
   get '/insights', to: 'dashboard#insights', as: :insights
   get '/your_complaints', to: 'complaints#your_complaints', as: :your_complaints
+  
+  get '/search', to: 'complaints#public_search', as: :public_search
+  post '/search', to: 'complaints#do_public_search'
 
   root to: 'visitors#index'
 end

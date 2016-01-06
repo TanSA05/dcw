@@ -1,10 +1,10 @@
 class ComplaintsController < ApplicationController
   include ComplaintsHelper
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :timeline]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :timeline, :status]
   before_action :set_new_complaint, only: [:new,:new_public]
   before_action :only_dcw, only: [:create, :recieve, :recieved, :unregistered]
-  before_action :authenticate_user!, except: [:new_public]
+  before_action :authenticate_user!, except: [:new_public,:create_public, :public_search, :status, :do_public_search]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -23,7 +23,6 @@ class ComplaintsController < ApplicationController
   def unregistered
     @complaints = Complaint.where(organization: nil).search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
   end
-
 
   def create
     @complaint = Complaint.new(complaint_params)
@@ -44,10 +43,30 @@ class ComplaintsController < ApplicationController
     respond_to do |format|
       if @complaint.save
         #push to timeline
-        format.html { redirect_to root_url, notice: 'Complaint was successfully created.' }
+        format.html { redirect_to status_complaint_path(@complaint), notice: 'Complaint was successfully created.' }
       else
         format.html { render :new_public }
       end
+    end
+  end
+
+  def status
+
+  end
+
+  def public_search
+
+  end
+
+  def do_public_search
+    complaint_number = params[:complaint_number]
+    contact_number = params[:contact_number]
+    complaint = Complaint.where(complaint_number: complaint_number, contact_number_of_complainant: contact_number)
+    if complaint.size == 1
+      redirect_to status_complaint_path(complaint.first)
+    else
+      flash[:error] = "Complaint not found"
+      render :public_search
     end
   end
 

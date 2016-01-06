@@ -1,0 +1,17 @@
+h1.newC Search for your complaint
+
+hr
+.row
+	.col-md-6.col-md-offset-3
+		.text-center
+			= form_tag public_search_path, :method => :post, :class => "" do
+				.label1
+					= label :complaint_number,"Enter your complaint number"
+				.form-group
+					= text_field_tag :complaint_number, params[:complaint_number], class: "form-control", placeholder: "Complaint Number"
+				.label1
+					= label :contact_number, "Enter your contact number"
+				.form-group
+					= text_field_tag :contact_number, params[:contact_number], class: "form-control", placeholder: "Contact Number"
+				.form-group
+					= submit_tag "Search", :name => nil, class: "btn btn-custom-theme btn-sm"

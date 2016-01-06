@@ -1,0 +1,25 @@
+h1.newC Complaint ##{@complaint.complaint_number} by #{@complaint.complainant}
+
+.complaint
+  br
+  .row
+    = show_field_with_wrapper 'col-md-4',"respondent"
+    = show_field_with_wrapper 'col-md-4',"status"
+    = show_field_with_wrapper 'col-md-4',"organization", nil,"Agency Concerned"
+    = show_field_with_wrapper 'col-md-4',"category"
+    = show_field_with_wrapper 'col-md-4',"next_target_date"
+    = show_field_with_wrapper 'col-md-4',"overdue"
+    = show_field_with_wrapper 'col-md-4',"contact_number_of_complainant"
+    = show_field_with_wrapper 'col-md-4',"address"
+    = show_field_with_wrapper 'col-md-4',"locality"
+    = show_field_with_wrapper 'col-md-12',"brief_of_complaint"
+    = show_field_with_wrapper 'col-md-12',"prayers"
+    = show_field_with_wrapper 'col-md-12',"final_remarks"
+    = show_field_with_wrapper 'col-md-4',"created_at", @complaint.created_at.to_formatted_s(:long),"Filed On"
+
+    = show_field_with_wrapper 'col-md-4',"final_target_date"
+    = show_field_with_wrapper 'col-md-4',"updated_at", @complaint.updated_at.to_formatted_s(:long),"Last Updated On"
+br
+.foot-links.center
+  = link_to "Back", :back, class: "btn btn-custom-theme btn-sm"
+
