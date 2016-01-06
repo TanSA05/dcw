@@ -24,7 +24,6 @@ Make the UI for home, dashboard and show view of complaint
 Cluster the complaint view into sections - basic, forwarded on ____ to ____, police details of forward on _____ and so on....
 
 Add generic_account? to organization
-Add phone, designation to user
 
 MANAGE DATES AND OVERDUE
 Nest respondent to one type for agency?/move to respondent name and respondent type nomenclature?

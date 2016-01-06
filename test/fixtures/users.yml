@@ -18,6 +18,8 @@
 #  name                   :string(255)
 #  role                   :integer
 #  organization_id        :integer
+#  phone                  :string(255)
+#  designation            :string(255)
 #
 # Indexes
 #
